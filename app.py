@@ -118,9 +118,17 @@ elif modulos == "Ejercicio 1":
 
         else:
             st.info("Flujo de caja: EN EQUILIBRIO")
+      
+   st.subheader("Eliminar movimientos")
 
-    else:
-        st.write("No hay movimientos registrados. Ingrese datos del movimiento.")
+      if st.button("Borrar todos los movimientos"):
+
+         st.session_state.movimientos = []
+         st.success("Todos los movimientos fueron eliminados.")
+         st.rerun()
+    
+   else:
+      st.write("No hay movimientos registrados. Ingrese datos del movimiento.")
 
 
 
