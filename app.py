@@ -33,7 +33,7 @@ if modulos == "Home":
   
 elif modulos == "Ejercicio 1":
   st.title(" Flujo de caja con listas")
-    st.subheader("Registrar movimiento")
+   st.subheader("Registrar movimiento")
     concepto = st.text_input("Ingrese el concepto del movimiento")
     tipo = st.selectbox("Seleccione el tipo de movimiento",["Ingreso", "Gasto"])
     valor = st.number_input(
