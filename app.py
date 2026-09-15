@@ -32,7 +32,20 @@ if modulos == "Home":
    st.image("Python_logo.png", width=300)
   
 elif modulos == "Ejercicio 1":
+
     st.title("Flujo de caja con listas")
+
+    st.markdown("""
+    ### Descripción del ejercicio
+
+    En este ejercicio se desarrollará un pequeño módulo para registrar
+    movimientos financieros utilizando una lista. Cada movimiento tendrá
+    un **concepto**, un **tipo de movimiento** y un **valor**.
+
+    La aplicación permitirá registrar ingresos y gastos, calcular el total
+    de cada uno y determinar el **saldo final del flujo de caja**.
+    """)
+
     st.subheader("Registrar movimiento")
 
     concepto = st.text_input("Ingrese el concepto del movimiento")
@@ -53,21 +66,27 @@ elif modulos == "Ejercicio 1":
         st.session_state.movimientos = []
 
     if st.button("Registrar movimiento"):
-        movimiento = {
-            "concepto": concepto,
-            "tipo": tipo,
-            "valor": valor
-        }
 
-        st.session_state.movimientos.append(movimiento)
+        if concepto != "" and valor > 0:
 
-        st.success("Movimiento registrado correctamente")
+            movimiento = {
+                "concepto": concepto,
+                "tipo": tipo,
+                "valor": valor
+            }
+
+            st.session_state.movimientos.append(movimiento)
+
+            st.success("Movimiento registrado correctamente")
+
+        else:
+            st.error("Ingrese un concepto y un valor mayor que 0.")
 
     st.subheader("Movimientos registrados")
 
     if len(st.session_state.movimientos) > 0:
 
-        st.write(st.session_state.movimientos)
+        st.dataframe(st.session_state.movimientos)
 
         total_ingresos = sum(
             movimiento["valor"]
@@ -83,9 +102,13 @@ elif modulos == "Ejercicio 1":
 
         saldo_final = total_ingresos - total_gastos
 
-        st.write("Total de ingresos:", total_ingresos)
-        st.write("Total de gastos:", total_gastos)
-        st.write("Saldo final:", saldo_final)
+        st.subheader("Resumen del flujo de caja")
+
+        col1, col2, col3 = st.columns(3)
+
+        col1.metric("Total de ingresos", f"S/ {total_ingresos:,.2f}")
+        col2.metric("Total de gastos", f"S/ {total_gastos:,.2f}")
+        col3.metric("Saldo final", f"S/ {saldo_final:,.2f}")
 
         if saldo_final > 0:
             st.success("Flujo de caja: A FAVOR")
@@ -97,7 +120,7 @@ elif modulos == "Ejercicio 1":
             st.info("Flujo de caja: EN EQUILIBRIO")
 
     else:
-        st.write("No hay movimientos registrados. Ingrese datos del movimiento")
+        st.write("No hay movimientos registrados. Ingrese datos del movimiento.")
 
 
 
