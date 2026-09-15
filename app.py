@@ -32,15 +32,21 @@ if modulos == "Home":
    st.image("Python_logo.png", width=300)
   
 elif modulos == "Ejercicio 1":
-   st.title(" Flujo de caja con listas")
-   st.subheader("Registrar movimiento")
-   concepto = st.text_input("Ingrese el concepto del movimiento")
-   tipo = st.selectbox("Seleccione el tipo de movimiento",["Ingreso", "Gasto"])
-   valor = st.number_input(
-   "Ingrese el valor",
-      min_value=0.0,
-      value=0.0,
-      step=10.0
+    st.title("Flujo de caja con listas")
+    st.subheader("Registrar movimiento")
+
+    concepto = st.text_input("Ingrese el concepto del movimiento")
+
+    tipo = st.selectbox(
+        "Seleccione el tipo de movimiento",
+        ["Ingreso", "Gasto"]
+    )
+
+    valor = st.number_input(
+        "Ingrese el valor",
+        min_value=0.0,
+        value=0.0,
+        step=10.0
     )
 
     if "movimientos" not in st.session_state:
