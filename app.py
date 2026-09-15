@@ -31,16 +31,67 @@ if modulos == "Home":
 
    st.image("Python_logo.png", width=300)
   
+elif modulos == "Ejercicio 1":
+  st.title(" Flujo de caja con listas")
+    st.subheader("Registrar movimiento")
+    concepto = st.text_input("Ingrese el concepto del movimiento")
+    tipo = st.selectbox("Seleccione el tipo de movimiento",["Ingreso", "Gasto"])
+    valor = st.number_input(
+        "Ingrese el valor",
+        min_value=0.0,
+        value=0.0,
+        step=10.0
+    )
 
-"""if modulos == "Listas":
-  st.write("Te encuentras en el módulo de listas")
+    if "movimientos" not in st.session_state:
+        st.session_state.movimientos = []
 
-  valor_inicial = int(st.number_input("Ingresa tu valor inicial del rango", value=0))
-  valor_final = int(st.number_input("Ingresa tu valor final del rango",value=10))
+    if st.button("Registrar movimiento"):
 
-  lista = list(range(valor_inicial, valor_final))
+        movimiento = {
+            "Concepto": concepto,
+            "Tipo de movimiento": tipo,
+            "Valor": valor
+        }
 
-  st.write(lista) """
+        st.session_state.movimientos.append(movimiento)
+
+        st.success("Movimiento registrado correctamente")
+
+    st.subheader("Movimientos registrados")
+
+    if len(st.session_state.movimientos) > 0:
+
+        st.write(st.session_state.movimientos)
+
+        total_ingresos = sum(
+            movimiento["valor"]
+            for movimiento in st.session_state.movimientos
+            if movimiento["tipo"] == "Ingreso"
+        )
+
+        total_gastos = sum(
+            movimiento["valor"]
+            for movimiento in st.session_state.movimientos
+            if movimiento["tipo"] == "Gasto"
+        )
+
+        saldo_final = total_ingresos - total_gastos
+
+        st.write("Total de ingresos:", total_ingresos)
+        st.write("Total de gastos:", total_gastos)
+        st.write("Saldo final:", saldo_final)
+
+        if saldo_final > 0:
+            st.success("Flujo de caja: A FAVOR")
+       else saldo_final < 0:
+            st.error("Flujo de caja: EN CONTRA")
+       
+    else:
+        st.write("No hay movimientos registrados. Ingrese datos del movimiento")
+
+
+
 
 """ elif modulos == "Arreglos":
   st.write("Te encuentras en el módulo de arreglos")
