@@ -13,7 +13,7 @@ st.sidebar.image("DMC.png")
 modulos = st.sidebar.selectbox("Selecione la sección a consultar",["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"])
 
 if modulos == "Home":
-  st.write("Nombre: Stefany Salazar Espinoza)  
+  st.write("Nombre: Stefany Salazar Espinoza  
 Nombre del módulo : Python Fundamentals
 Año: 2026  
 El presente proyecto xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
