@@ -28,7 +28,7 @@ if modulos == "Home":
 
   st.write(lista) """
 
-elif modulos == "Arreglos":
+""" elif modulos == "Arreglos":
   st.write("Te encuentras en el módulo de arreglos")
 
   cantidad = st.slider("Seleccione un valor del rango", min_value = 1, max_value = 100, value=20 )
@@ -48,5 +48,5 @@ elif modulos == "Funciones":
   st.write("El resultados de tu valor futuro de inversión es: ",round(resultado_valor_futuro,2))
   
 else:
-  st.write("Te encuentras en el módulo de POO")
+  st.write("Te encuentras en el módulo de POO")  """
   
