@@ -10,8 +10,7 @@ st.sidebar.image("DMC.png")
 
 modulos = st.sidebar.selectbox("Selecione la sección a consultar",["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"])
 
-if modulos == "Home":
-   st.title("Titulo del proyecto")
+if modulos == "Home":  
    st.subheader("Módulo: Python Fundamentals")
    st.write("Nombre: Stefany Salazar Espinoza")    
    st.write("Año: 2026")
