@@ -6,17 +6,34 @@ import librería_clases_proyecto1 as lc
 st.title("Titulo del proyecto") 
 st.sidebar.title("Parámetros")
 
-st.image("Python_logo.png",width =300)
 st.sidebar.image("DMC.png")
 
 modulos = st.sidebar.selectbox("Selecione la sección a consultar",["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"])
 
 if modulos == "Home":
-  st.write("Nombre: Stefany Salazar Espinoza")
-  st.write("Nombre del módulo : Python Fundamentals")
-  st.write("Año: 2026")
-  st.write("El presente proyecto xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-  st.write("Las tecnologías utilizadas para este proyecto fueron xxxxxxxxxxxxxxxxxxxxxxxxxxx")
+
+   st.subheader("Módulo: Python Fundamentals")
+
+    st.write("Nombre: Stefany Salazar Espinoza")
+    
+    st.write("Año: 2026")
+
+    st.markdown("""
+    ### Descripción
+
+    El presente proyecto tiene como objetivo aplicar los conocimientos
+    adquiridos en el módulo **Python Fundamentals**, desarrollando
+    diferentes ejercicios mediante el uso de Python y Streamlit.
+
+    ### Tecnologías utilizadas
+
+    - **Python**
+    - **Streamlit**
+    - **NumPy**
+    - **GitHub**
+    """)
+
+    st.image("Python_logo.png", width=300)
   
 
 """if modulos == "Listas":
