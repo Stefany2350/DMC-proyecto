@@ -87,13 +87,11 @@ elif modulos == "Ejercicio 1":
         st.write("Total de gastos:", total_gastos)
         st.write("Saldo final:", saldo_final)
 
-        if saldo_final > 0:
+         if saldo_final > 0:
            st.success("Flujo de caja: A FAVOR")
-
-       elif saldo_final < 0:
+         elif saldo_final < 0:
            st.error("Flujo de caja: EN CONTRA")
-
-       else:
+         else:
            st.info("Flujo de caja: EN EQUILIBRIO")
        
     else:
