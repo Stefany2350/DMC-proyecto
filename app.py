@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
-import libreria_funciones as lf
+import libreria_funciones_proyecto1 as lf
+import libreria_clases_proyecto1 as lc
 
 st.title("Titulo del proyecto") 
 st.sidebar.title("Parámetros")
