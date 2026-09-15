@@ -4,11 +4,9 @@ import libreria_funciones as lf
 
 st.title("Titulo del proyecto") 
 st.sidebar.title("Parámetros")
-st.write("Elaborado por: Stefany Salazar")
 
 st.image("Python_logo.png",width =300)
 st.sidebar.image("DMC.png")
-
 
 modulos = st.sidebar.selectbox("Selecione la sección a consultar",["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"])
 
@@ -17,7 +15,7 @@ if modulos == "Home":
 Nombre del módulo : Python Fundamentals
 Año: 2026  
 El presente proyecto xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-Las tecnologías utilizadas para este proyecto fueron xxxxxxxxxxxxxxxxxxxxxxxxxxx”)
+Las tecnologías utilizadas para este proyecto fueron xxxxxxxxxxxxxxxxxxxxxxxxxxx")
 
 
 
