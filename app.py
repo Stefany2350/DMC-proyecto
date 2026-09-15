@@ -54,9 +54,9 @@ elif modulos == "Ejercicio 1":
 
     if st.button("Registrar movimiento"):
         movimiento = {
-            "Concepto": concepto,
-            "Tipo de movimiento": tipo,
-            "Valor": valor
+            "concepto": concepto,
+            "tipo": tipo,
+            "valor": valor
         }
 
         st.session_state.movimientos.append(movimiento)
@@ -87,13 +87,15 @@ elif modulos == "Ejercicio 1":
         st.write("Total de gastos:", total_gastos)
         st.write("Saldo final:", saldo_final)
 
-         if saldo_final > 0:
-           st.success("Flujo de caja: A FAVOR")
-         elif saldo_final < 0:
-           st.error("Flujo de caja: EN CONTRA")
-         else:
-           st.info("Flujo de caja: EN EQUILIBRIO")
-       
+        if saldo_final > 0:
+            st.success("Flujo de caja: A FAVOR")
+
+        elif saldo_final < 0:
+            st.error("Flujo de caja: EN CONTRA")
+
+        else:
+            st.info("Flujo de caja: EN EQUILIBRIO")
+
     else:
         st.write("No hay movimientos registrados. Ingrese datos del movimiento")
 
