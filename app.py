@@ -89,7 +89,7 @@ elif modulos == "Ejercicio 1":
 
         if saldo_final > 0:
             st.success("Flujo de caja: A FAVOR")
-       else saldo_final < 0:
+      else saldo_final < 0:
             st.error("Flujo de caja: EN CONTRA")
        
     else:
