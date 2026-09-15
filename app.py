@@ -30,7 +30,7 @@ if modulos == "Home":
     - **GitHub**
     """)
 
-    st.image("Python_logo.png", width=300)
+   st.image("Python_logo.png", width=300)
   
 
 """if modulos == "Listas":
