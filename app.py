@@ -84,54 +84,56 @@ elif modulos == "Ejercicio 1":
 
     st.subheader("Movimientos registrados")
 
-if len(st.session_state.movimientos) > 0:
+    if len(st.session_state.movimientos) > 0:
 
-    st.dataframe(st.session_state.movimientos)
+        st.dataframe(st.session_state.movimientos)
 
-    total_ingresos = sum(
-        movimiento["valor"]
-        for movimiento in st.session_state.movimientos
-        if movimiento["tipo"] == "Ingreso"
-    )
+        total_ingresos = sum(
+            movimiento["valor"]
+            for movimiento in st.session_state.movimientos
+            if movimiento["tipo"] == "Ingreso"
+        )
 
-    total_gastos = sum(
-        movimiento["valor"]
-        for movimiento in st.session_state.movimientos
-        if movimiento["tipo"] == "Gasto"
-    )
+        total_gastos = sum(
+            movimiento["valor"]
+            for movimiento in st.session_state.movimientos
+            if movimiento["tipo"] == "Gasto"
+        )
 
-    saldo_final = total_ingresos - total_gastos
+        saldo_final = total_ingresos - total_gastos
 
-    st.subheader("Resumen del flujo de caja")
+        st.subheader("Resumen del flujo de caja")
 
-    col1, col2, col3 = st.columns(3)
+        col1, col2, col3 = st.columns(3)
 
-    col1.metric("Total de ingresos", f"S/ {total_ingresos:,.2f}")
-    col2.metric("Total de gastos", f"S/ {total_gastos:,.2f}")
-    col3.metric("Saldo final", f"S/ {saldo_final:,.2f}")
+        col1.metric("Total de ingresos", f"S/ {total_ingresos:,.2f}")
+        col2.metric("Total de gastos", f"S/ {total_gastos:,.2f}")
+        col3.metric("Saldo final", f"S/ {saldo_final:,.2f}")
 
-    if saldo_final > 0:
-        st.success("Flujo de caja: A FAVOR")
+        if saldo_final > 0:
+            st.success("Flujo de caja: A FAVOR")
 
-    elif saldo_final < 0:
-        st.error("Flujo de caja: EN CONTRA")
+        elif saldo_final < 0:
+            st.error("Flujo de caja: EN CONTRA")
+
+        else:
+            st.info("Flujo de caja: EN EQUILIBRIO")
+
+        st.subheader("Eliminar movimientos")
+
+        if st.button("Borrar todos los movimientos"):
+            st.session_state.movimientos = []
+            st.success("Todos los movimientos fueron eliminados.")
+            st.rerun()
 
     else:
-        st.info("Flujo de caja: EN EQUILIBRIO")
+        st.write("No hay movimientos registrados. Ingrese datos del movimiento.")
 
-    # Botón para borrar todos los movimientos
-    st.subheader("Eliminar movimientos")
-
-    if st.button("Borrar todos los movimientos"):
-        st.session_state.movimientos = []
-        st.success("Todos los movimientos fueron eliminados.")
-        st.rerun()
-
-else:
-    st.write("No hay movimientos registrados. Ingrese datos del movimiento.")
 
 ###############################################################################################################
+
 elif modulos == "Ejercicio 2":
+
     st.title("Formulario de registro de productos")
 
     st.markdown("""
