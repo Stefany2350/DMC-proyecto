@@ -130,19 +130,146 @@ if len(st.session_state.movimientos) > 0:
 else:
     st.write("No hay movimientos registrados. Ingrese datos del movimiento.")
 
+###############################################################################################################
+elif modulos == "Ejercicio 2":
+
+    st.title("Formulario de registro de productos")
+
+    st.markdown("""
+    ### Descripción del ejercicio
+
+    En este ejercicio se desarrollará un formulario para registrar productos
+    utilizando **arreglos de NumPy**.
+
+    Cada registro tendrá un nombre, una categoría, un precio, una cantidad
+    y un total calculado automáticamente.
+    """)
+
+    st.subheader("Registrar producto")
+
+    nombre = st.text_input("Ingrese el nombre del producto")
+
+    categoria = st.selectbox(
+        "Seleccione la categoría",
+        ["Limpieza", "Tecnología", "Alimentos", "Bebidas","Otros"]
+    )
+
+    precio = st.number_input(
+        "Ingrese el precio",
+        min_value=0.0,
+        value=0.0,
+        step=1.0
+    )
+
+    cantidad = st.number_input(
+        "Ingrese la cantidad",
+        min_value=1,
+        value=1,
+        step=1
+    )
+
+    # Crear arreglo NumPy vacío
+    if "productos" not in st.session_state:
+        st.session_state.productos = np.empty((0, 5), dtype=object)
+
+    # Registrar producto
+    if st.button("Registrar producto"):
+
+        if nombre != "" and precio > 0 and cantidad > 0:
+
+            total = precio * cantidad
+
+            nuevo_producto = np.array(
+                [[nombre, categoria, precio, cantidad, total]],
+                dtype=object
+            )
+
+            st.session_state.productos = np.vstack(
+                [st.session_state.productos, nuevo_producto]
+            )
+
+            st.success("Producto registrado correctamente")
+
+        else:
+            st.error("Ingrese un nombre y un precio mayor que 0.")
+
+    # Mostrar productos
+    st.subheader("Productos registrados")
+
+    if len(st.session_state.productos) > 0:
+
+        st.dataframe(
+            st.session_state.productos,
+            column_config={
+                0: "Nombre",
+                1: "Categoría",
+                2: st.column_config.NumberColumn(
+                    "Precio",
+                    format="S/ %.2f"
+                ),
+                3: "Cantidad",
+                4: st.column_config.NumberColumn(
+                    "Total",
+                    format="S/ %.2f"
+                )
+            },
+            hide_index=True
+        )
+
+        # Eliminar producto
+        st.subheader("Eliminar producto")
+
+        opciones = []
+
+        for i, producto in enumerate(st.session_state.productos):
+
+            opciones.append(
+                f"{i} - {producto[0]} - {producto[1]} - S/ {producto[4]:.2f}"
+            )
+
+        producto_seleccionado = st.selectbox(
+            "Seleccione el producto que desea eliminar",
+            opciones
+        )
+
+        if st.button("Eliminar producto"):
+
+            indice = int(producto_seleccionado.split(" - ")[0])
+
+            st.session_state.productos = np.delete(
+                st.session_state.productos,
+                indice,
+                axis=0
+            )
+
+            st.success("Producto eliminado correctamente")
+
+            st.rerun()
+
+    else:
+        st.write("No hay productos registrados.")
 
 
 
-""" elif modulos == "Arreglos":
-  st.write("Te encuentras en el módulo de arreglos")
-
-  cantidad = st.slider("Seleccione un valor del rango", min_value = 1, max_value = 100, value=20 )
-  arreglo = np.arange(cantidad)
-
-  st.write(arreglo)
 
 
-elif modulos == "Funciones":
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ """elif modulos == "Funciones":
   st.write("Te encuentras en el módulo de Funciones")
   capital_i = st.number_input("Ingrese el capital inicial", min_value = 0 , max_value = 100000, value=1000)
   aporte_m = st.number_input("Ingrese el aporte mensual", min_value = 0 , max_value = 10000, value=100)
