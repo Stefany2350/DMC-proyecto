@@ -131,7 +131,7 @@ else:
     st.write("No hay movimientos registrados. Ingrese datos del movimiento.")
 
 ###############################################################################################################
-elif modulos == "Ejercicio 2":
+   elif modulos == "Ejercicio 2":
 
     st.title("Formulario de registro de productos")
 
