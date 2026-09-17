@@ -18,8 +18,8 @@ if modulos == "Home":
     ### Descripción
 
     El presente proyecto tiene como objetivo aplicar los conocimientos
-    adquiridos en el módulo **Python Fundamentals**, desarrollando
-    diferentes ejercicios mediante el uso de Python y Streamlit.
+    adquiridos en el módulo **Python Fundamentals** permitiendo evidenciar el uso de estructuras
+    de datos, widgets, funciones, clases y lógica de programación mediante la creaciòn de una interfaz interactiva.
 
     ### Tecnologías utilizadas
 
