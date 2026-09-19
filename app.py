@@ -86,24 +86,25 @@ elif modulos == "Ejercicio 1":
 
     if len(st.session_state.movimientos) > 0:
 
-        # Mostrar los movimientos como tabla
-        st.dataframe(
-            st.session_state.movimientos,
-            use_container_width=True
-        )
+        # Encabezados de la tabla
+        col1, col2, col3, col4 = st.columns([3, 2, 2, 1])
 
-        # Botones para eliminar cada registro
-        st.write("Eliminar un movimiento:")
+        col1.markdown("**Concepto**")
+        col2.markdown("**Tipo**")
+        col3.markdown("**Valor**")
+        col4.markdown("**Eliminar**")
 
+        # Mostrar cada movimiento
         for i, movimiento in enumerate(st.session_state.movimientos):
 
-            if st.button(
-                f"🗑️ Eliminar: {movimiento['concepto']}",
-                key=f"eliminar_{i}"
-            ):
+            col1, col2, col3, col4 = st.columns([3, 2, 2, 1])
 
+            col1.write(movimiento["concepto"])
+            col2.write(movimiento["tipo"])
+            col3.write(f"S/ {movimiento['valor']:,.2f}")
+
+            if col4.button("🗑️", key=f"eliminar_{i}"):
                 st.session_state.movimientos.pop(i)
-
                 st.rerun()
 
         total_ingresos = sum(
