@@ -399,9 +399,8 @@ elif modulos == "Ejercicio 4":
     ### Descripción del ejercicio
 
     En este ejercicio se utilizará la clase **Paciente**,
-    almacenada en la librería externa `libreria_clases_proyecto1.py`.
-
-    La clase permite registrar pacientes y realizar cálculos
+    almacenada en la librería externa `libreria_clases_proyecto1.py`, la cual
+    permite registrar pacientes y realizar cálculos
     básicos como el **IMC**, su clasificación y la
     **superficie corporal**.
 
