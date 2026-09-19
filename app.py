@@ -238,22 +238,19 @@ elif modulos == "Ejercicio 2":
         # Eliminar producto
         st.subheader("Eliminar producto")
 
-        opciones = []
+        nombres_productos = []
 
-        for i, producto in enumerate(st.session_state.productos):
-
-            opciones.append(
-                f"{i} - {producto[0]} - {producto[1]} - S/ {producto[4]:.2f}"
-            )
+        for producto in st.session_state.productos:
+            nombres_productos.append(producto[0])
 
         producto_seleccionado = st.selectbox(
             "Seleccione el producto que desea eliminar",
-            opciones
+            nombres_productos
         )
 
         if st.button("Eliminar producto"):
 
-            indice = int(producto_seleccionado.split(" - ")[0])
+            indice = nombres_productos.index(producto_seleccionado)
 
             st.session_state.productos = np.delete(
                 st.session_state.productos,
