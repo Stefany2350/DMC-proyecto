@@ -220,14 +220,14 @@ elif modulos == "Ejercicio 2":
         st.dataframe(
             st.session_state.productos,
             column_config={
-                0: "Nombre",
-                1: "Categoría",
-                2: st.column_config.NumberColumn(
+                1: "Nombre",
+                2: "Categoría",
+                3: st.column_config.NumberColumn(
                     "Precio",
                     format="S/ %.2f"
                 ),
-                3: "Cantidad",
-                4: st.column_config.NumberColumn(
+                4: "Cantidad",
+                5: st.column_config.NumberColumn(
                     "Total",
                     format="S/ %.2f"
                 )
