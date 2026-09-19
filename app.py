@@ -3,7 +3,6 @@ import numpy as np
 import libreria_funciones_proyecto1 as lf
 import librería_clases_proyecto1 as lc
 
-st.title("Aplicación de Python para la Gestión y Análisis de Datos") 
 st.sidebar.title("Parámetros")
 
 st.sidebar.image("DMC.png")
@@ -32,6 +31,8 @@ if modulos == "Home":
    st.image("Python_logo.png", width=300)
   
 elif modulos == "Ejercicio 1":
+
+    st.title("Aplicación de Python para la Gestión y Análisis de Datos") 
 
     st.title("Flujo de caja con listas")
 
