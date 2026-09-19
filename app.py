@@ -340,7 +340,7 @@ elif modulos == "Ejercicio 3":
                     st.subheader("Resultado")
 
                     st.write(
-                        f"Nombre del análisis: {nombre_analisis}"
+                        f"Periodo del análisis: {nombre_analisis}"
                     )
 
                     st.write(
