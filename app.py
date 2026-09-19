@@ -275,6 +275,104 @@ elif modulos == "Ejercicio 2":
     else:
         st.write("No hay productos registrados.")
 
- 
+##################################################################################################################################
+
+elif modulos == "Ejercicio 3":
+
+    st.title("Cálculo de tasa de error de transacciones")
+
+    st.markdown("""
+    ### Descripción del ejercicio
+
+    En este ejercicio se utilizará una función relacionada con el análisis
+    de transacciones para calcular la **tasa de error** y la **tasa de éxito**.
+
+    La función recibe como parámetros el número de transacciones fallidas
+    y el número de transacciones totales.
+    """)
+
+    st.subheader("Seleccionar función")
+
+    funcion = st.selectbox(
+        "Seleccione la función que desea ejecutar",
+        ["Calcular tasa de error de transacciones"]
+    )
+
+    if funcion == "Calcular tasa de error de transacciones":
+
+        st.subheader("Ingresar parámetros")
+
+        transacciones_fallidas = st.number_input(
+            "Número de transacciones fallidas",
+            min_value=0,
+            value=0,
+            step=1
+        )
+
+        transacciones_totales = st.number_input(
+            "Número de transacciones totales",
+            min_value=1,
+            value=1,
+            step=1
+        )
+
+        if st.button("Ejecutar función"):
+
+            try:
+
+                resultado = lf.calcular_tasa_error_transacciones(
+                    transacciones_fallidas,
+                    transacciones_totales
+                )
+
+                st.success("Función ejecutada correctamente")
+
+                st.subheader("Resultado")
+
+                col1, col2 = st.columns(2)
+
+                col1.metric(
+                    "Tasa de error",
+                    f"{resultado['tasa_error_pct']:.4f}%"
+                )
+
+                col2.metric(
+                    "Tasa de éxito",
+                    f"{resultado['tasa_exito_pct']:.4f}%"
+                )
+
+                # Crear histórico si todavía no existe
+                if "historico_tasa_error" not in st.session_state:
+                    st.session_state.historico_tasa_error = []
+
+                # Guardar resultado
+                registro = {
+                    "Transacciones fallidas": transacciones_fallidas,
+                    "Transacciones totales": transacciones_totales,
+                    "Tasa de error (%)": resultado["tasa_error_pct"],
+                    "Tasa de éxito (%)": resultado["tasa_exito_pct"]
+                }
+
+                st.session_state.historico_tasa_error.append(registro)
+
+            except ValueError as e:
+
+                st.error(str(e))
+
+    st.subheader("Histórico de resultados")
+
+    if (
+        "historico_tasa_error" in st.session_state
+        and len(st.session_state.historico_tasa_error) > 0
+    ):
+
+        st.dataframe(
+            st.session_state.historico_tasa_error,
+            use_container_width=True
+        )
+
+    else:
+
+        st.write("No hay resultados registrados.")
 
   
