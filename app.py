@@ -304,7 +304,7 @@ elif modulos == "Ejercicio 3":
         st.subheader("Ingresar parámetros")
 
         nombre_analisis = st.text_input(
-            "Ingrese el nombre del análisis"
+            "Ingrese periodo del análisis"
         )
 
         transacciones_fallidas = st.number_input(
