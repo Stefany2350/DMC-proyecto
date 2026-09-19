@@ -86,16 +86,21 @@ elif modulos == "Ejercicio 1":
 
     if len(st.session_state.movimientos) > 0:
 
-        # Mostrar cada movimiento con su botón de eliminar
+        # Mostrar los movimientos como tabla
+        st.dataframe(
+            st.session_state.movimientos,
+            use_container_width=True
+        )
+
+        # Botones para eliminar cada registro
+        st.write("Eliminar un movimiento:")
+
         for i, movimiento in enumerate(st.session_state.movimientos):
 
-            col1, col2, col3, col4 = st.columns([3, 2, 2, 1])
-
-            col1.write(movimiento["concepto"])
-            col2.write(movimiento["tipo"])
-            col3.write(f"S/ {movimiento['valor']:,.2f}")
-
-            if col4.button("🗑️", key=f"eliminar_{i}"):
+            if st.button(
+                f"🗑️ Eliminar: {movimiento['concepto']}",
+                key=f"eliminar_{i}"
+            ):
 
                 st.session_state.movimientos.pop(i)
 
@@ -132,7 +137,7 @@ elif modulos == "Ejercicio 1":
         else:
             st.info("Flujo de caja: EN EQUILIBRIO")
 
-        st.subheader("Eliminar movimientos")
+        st.subheader("Eliminar todos los movimientos")
 
         if st.button("Borrar todos los movimientos"):
             st.session_state.movimientos = []
