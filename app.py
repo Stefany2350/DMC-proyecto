@@ -382,7 +382,10 @@ elif modulos == "Ejercicio 3":
             use_container_width=True
         )
 
+        if st.button("Eliminar todos los registros"):
+            st.session_state.historico_tasa_error = []
+            st.rerun()
+
     else:
 
         st.write("No hay resultados registrados.")
-  
