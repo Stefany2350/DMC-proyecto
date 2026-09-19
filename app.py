@@ -5,11 +5,12 @@ import librería_clases_proyecto1 as lc
 
 st.sidebar.title("Parámetros")
 
-st.sidebar.image("DMC.png")
+####st.sidebar.image("DMC.png")
 
 modulos = st.sidebar.selectbox("Selecione la sección a consultar",["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"])
 
-if modulos == "Home": 
+if modulos == "Home":
+   st.sidebar.image("image_home.png")
    st.title("Aplicación de Python para la Gestión y Análisis de Datos")
    st.subheader("Módulo: Python Fundamentals")
    st.write("Nombre: Stefany Salazar Espinoza")    
