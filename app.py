@@ -389,3 +389,201 @@ elif modulos == "Ejercicio 3":
     else:
 
         st.write("No hay resultados registrados.")
+
+###############################################################################################################################################
+elif modulos == "Ejercicio 4":
+
+    st.title("Gestión de pacientes")
+
+    st.markdown("""
+    ### Descripción del ejercicio
+
+    En este ejercicio se utilizará la clase **Paciente**,
+    almacenada en la librería externa `libreria_clases_proyecto1.py`.
+
+    La clase permite registrar pacientes y realizar cálculos
+    básicos como el **IMC**, su clasificación y la
+    **superficie corporal**.
+
+    Se implementarán las operaciones básicas de un CRUD:
+
+    - Crear
+    - Leer
+    - Actualizar
+    - Eliminar
+    """)
+
+    st.subheader("Seleccionar clase")
+
+    clase = st.selectbox(
+        "Seleccione la clase que desea utilizar",
+        ["Paciente"]
+    )
+
+    if clase == "Paciente":
+
+        if "pacientes" not in st.session_state:
+            st.session_state.pacientes = []
+
+        # CREAR
+        st.subheader("Crear registro")
+
+        nombre = st.text_input(
+            "Ingrese el nombre del paciente"
+        )
+
+        peso = st.number_input(
+            "Ingrese el peso en kg",
+            min_value=0.1,
+            value=60.0,
+            step=0.1
+        )
+
+        altura = st.number_input(
+            "Ingrese la altura en metros",
+            min_value=0.1,
+            value=1.60,
+            step=0.01
+        )
+
+        if st.button("Crear paciente"):
+
+            try:
+
+                paciente = lc.Paciente(
+                    nombre,
+                    peso,
+                    altura
+                )
+
+                st.session_state.pacientes.append(paciente)
+
+                st.write("Paciente registrado correctamente.")
+
+            except ValueError as e:
+
+                st.write(str(e))
+
+        # LEER
+        st.subheader("Registros de pacientes")
+
+        if len(st.session_state.pacientes) > 0:
+
+            registros = []
+
+            for paciente in st.session_state.pacientes:
+
+                registros.append(
+                    paciente.resumen()
+                )
+
+            st.dataframe(
+                registros,
+                use_container_width=True
+            )
+
+        else:
+
+            st.write("No hay pacientes registrados.")
+
+        # ACTUALIZAR
+        st.subheader("Actualizar paciente")
+
+        if len(st.session_state.pacientes) > 0:
+
+            nombres = []
+
+            for paciente in st.session_state.pacientes:
+                nombres.append(paciente.nombre)
+
+            paciente_actualizar = st.selectbox(
+                "Seleccione el paciente que desea actualizar",
+                nombres,
+                key="actualizar_paciente"
+            )
+
+            nuevo_peso = st.number_input(
+                "Nuevo peso en kg",
+                min_value=0.1,
+                value=60.0,
+                step=0.1,
+                key="nuevo_peso"
+            )
+
+            nueva_altura = st.number_input(
+                "Nueva altura en metros",
+                min_value=0.1,
+                value=1.60,
+                step=0.01,
+                key="nueva_altura"
+            )
+
+            if st.button("Actualizar paciente"):
+
+                indice = nombres.index(
+                    paciente_actualizar
+                )
+
+                paciente = st.session_state.pacientes[indice]
+
+                paciente.peso_kg = nuevo_peso
+                paciente.altura_m = nueva_altura
+
+                st.write(
+                    "Paciente actualizado correctamente."
+                )
+
+                st.rerun()
+
+        # ELIMINAR
+        st.subheader("Eliminar paciente")
+
+        if len(st.session_state.pacientes) > 0:
+
+            nombres = []
+
+            for paciente in st.session_state.pacientes:
+                nombres.append(paciente.nombre)
+
+            paciente_eliminar = st.selectbox(
+                "Seleccione el paciente que desea eliminar",
+                nombres,
+                key="eliminar_paciente"
+            )
+
+            if st.button("Eliminar paciente"):
+
+                indice = nombres.index(
+                    paciente_eliminar
+                )
+
+                st.session_state.pacientes.pop(
+                    indice
+                )
+
+                st.write(
+                    "Paciente eliminado correctamente."
+                )
+
+                st.rerun()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
