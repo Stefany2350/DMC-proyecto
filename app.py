@@ -9,7 +9,8 @@ st.sidebar.image("DMC.png")
 
 modulos = st.sidebar.selectbox("Selecione la sección a consultar",["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"])
 
-if modulos == "Home":  
+if modulos == "Home": 
+   st.title("Aplicación de Python para la Gestión y Análisis de Datos")
    st.subheader("Módulo: Python Fundamentals")
    st.write("Nombre: Stefany Salazar Espinoza")    
    st.write("Año: 2026")
@@ -31,8 +32,6 @@ if modulos == "Home":
    st.image("Python_logo.png", width=300)
   
 elif modulos == "Ejercicio 1":
-
-    st.title("Aplicación de Python para la Gestión y Análisis de Datos") 
 
     st.title("Flujo de caja con listas")
 
