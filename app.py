@@ -324,7 +324,7 @@ elif modulos == "Ejercicio 3":
         if st.button("Ejecutar función"):
 
             if nombre_analisis == "":
-                st.write("Debe ingresar el nombre del análisis.")
+                st.write("Ingrese periodo del análisis")
 
             else:
 
