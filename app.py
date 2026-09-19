@@ -284,7 +284,7 @@ elif modulos == "Ejercicio 3":
     st.markdown("""
     ### Descripción del ejercicio
 
-    En este ejercicio se utilizará una función relacionada con el análisis
+    En este ejercicio se usará funciones desde una librería externa. En este caso se utilizará una función relacionada con el análisis
     de transacciones para calcular la **tasa de error** y la **tasa de éxito**.
 
     La función recibe como parámetros el número de transacciones fallidas
