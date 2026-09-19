@@ -262,9 +262,18 @@ elif modulos == "Ejercicio 2":
 
             st.rerun()
 
+        st.subheader("Eliminar todos los registros")
+
+        if st.button("Borrar todos los productos"):
+
+            st.session_state.productos = np.empty((0, 5), dtype=object)
+
+            st.success("Todos los productos fueron eliminados.")
+
+            st.rerun()
+
     else:
         st.write("No hay productos registrados.")
-
 
  
 
