@@ -3,7 +3,7 @@ import numpy as np
 import libreria_funciones_proyecto1 as lf
 import librería_clases_proyecto1 as lc
 
-st.title("Titulo del proyecto") 
+st.title("Aplicación de Python para la Gestión y Análisis de Datos") 
 st.sidebar.title("Parámetros")
 
 st.sidebar.image("DMC.png")
