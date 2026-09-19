@@ -284,8 +284,9 @@ elif modulos == "Ejercicio 3":
     st.markdown("""
     ### Descripción del ejercicio
 
-    En este ejercicio se usará funciones desde una librería externa. En este caso se utilizará una función relacionada con el análisis
-    de transacciones para calcular la **tasa de error** y la **tasa de éxito**.
+    En este ejercicio se utilizará una función desde una librería externa.
+    Se utilizará una función relacionada con el análisis de transacciones
+    para calcular la tasa de error y la tasa de éxito.
 
     La función recibe como parámetros el número de transacciones fallidas
     y el número de transacciones totales.
@@ -301,6 +302,10 @@ elif modulos == "Ejercicio 3":
     if funcion == "Calcular tasa de error de transacciones":
 
         st.subheader("Ingresar parámetros")
+
+        nombre_analisis = st.text_input(
+            "Ingrese el nombre del análisis"
+        )
 
         transacciones_fallidas = st.number_input(
             "Número de transacciones fallidas",
@@ -318,46 +323,52 @@ elif modulos == "Ejercicio 3":
 
         if st.button("Ejecutar función"):
 
-            try:
+            if nombre_analisis == "":
+                st.write("Debe ingresar el nombre del análisis.")
 
-                resultado = lf.calcular_tasa_error_transacciones(
-                    transacciones_fallidas,
-                    transacciones_totales
-                )
+            else:
 
-                st.success("Función ejecutada correctamente")
+                try:
 
-                st.subheader("Resultado")
+                    resultado = lf.calcular_tasa_error_transacciones(
+                        transacciones_fallidas,
+                        transacciones_totales
+                    )
 
-                col1, col2 = st.columns(2)
+                    st.write("Función ejecutada correctamente.")
 
-                col1.metric(
-                    "Tasa de error",
-                    f"{resultado['tasa_error_pct']:.4f}%"
-                )
+                    st.subheader("Resultado")
 
-                col2.metric(
-                    "Tasa de éxito",
-                    f"{resultado['tasa_exito_pct']:.4f}%"
-                )
+                    st.write(
+                        f"Nombre del análisis: {nombre_analisis}"
+                    )
 
-                # Crear histórico si todavía no existe
-                if "historico_tasa_error" not in st.session_state:
-                    st.session_state.historico_tasa_error = []
+                    st.write(
+                        f"Tasa de error: "
+                        f"{resultado['tasa_error_pct']:.4f}%"
+                    )
 
-                # Guardar resultado
-                registro = {
-                    "Transacciones fallidas": transacciones_fallidas,
-                    "Transacciones totales": transacciones_totales,
-                    "Tasa de error (%)": resultado["tasa_error_pct"],
-                    "Tasa de éxito (%)": resultado["tasa_exito_pct"]
-                }
+                    st.write(
+                        f"Tasa de éxito: "
+                        f"{resultado['tasa_exito_pct']:.4f}%"
+                    )
 
-                st.session_state.historico_tasa_error.append(registro)
+                    if "historico_tasa_error" not in st.session_state:
+                        st.session_state.historico_tasa_error = []
 
-            except ValueError as e:
+                    registro = {
+                        "Análisis": nombre_analisis,
+                        "Transacciones fallidas": transacciones_fallidas,
+                        "Transacciones totales": transacciones_totales,
+                        "Tasa de error (%)": resultado["tasa_error_pct"],
+                        "Tasa de éxito (%)": resultado["tasa_exito_pct"]
+                    }
 
-                st.error(str(e))
+                    st.session_state.historico_tasa_error.append(registro)
+
+                except ValueError as e:
+
+                    st.write(str(e))
 
     st.subheader("Histórico de resultados")
 
@@ -374,5 +385,4 @@ elif modulos == "Ejercicio 3":
     else:
 
         st.write("No hay resultados registrados.")
-
   
