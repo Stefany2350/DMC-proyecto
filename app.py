@@ -60,21 +60,111 @@ st.markdown("""
         margin: 0 !important;
     }
 
-    .custom-data-title {
-        background: linear-gradient(
-            135deg,
-            #0F172A 0%,
-            #1E293B 50%,
-            #0F172A 100%
-        ) !important;
+/* ==========================================
+   TÍTULO PRINCIPAL CON EFECTO HOVER
+   ========================================== */
 
-        border: 1px solid #475569 !important;
-        border-left: 6px solid #38BDF8 !important;
-        padding: 24px 30px !important;
-        border-radius: 14px !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
-        margin-bottom: 30px !important;
+.custom-data-title {
+    background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E293B 50%,
+        #0F172A 100%
+    ) !important;
+
+    background-size: 200% 200% !important;
+
+    border: 1px solid #475569 !important;
+    border-left: 6px solid #38BDF8 !important;
+
+    padding: 24px 30px !important;
+    border-radius: 14px !important;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.5) !important;
+
+    margin-bottom: 30px !important;
+
+    position: relative !important;
+    overflow: hidden !important;
+
+    transition:
+        all 0.4s ease-in-out !important;
+}
+
+
+/* Gradiente que aparece al pasar el cursor */
+
+.custom-data-title:hover {
+
+    background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1D4ED8 35%,
+        #38BDF8 70%,
+        #0F172A 100%
+    ) !important;
+
+    background-size: 250% 250% !important;
+
+    border-color: #38BDF8 !important;
+
+    box-shadow:
+        0 0 25px rgba(56, 189, 248, 0.35),
+        0 0 50px rgba(37, 99, 235, 0.20) !important;
+
+    transform: translateY(-3px) !important;
+
+    animation: tituloGradient 4s ease infinite !important;
+}
+
+
+/* Animación del gradiente */
+
+@keyframes tituloGradient {
+
+    0% {
+        background-position: 0% 50%;
     }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+
+/* Título */
+
+.custom-data-title h1 {
+
+    color: #F8FAFC !important;
+
+    font-size: 2.1rem !important;
+
+    font-weight: 700 !important;
+
+    margin: 0 !important;
+
+    position: relative !important;
+    z-index: 2 !important;
+
+    transition: all 0.3s ease !important;
+}
+
+
+/* El texto también reacciona al pasar el cursor */
+
+.custom-data-title:hover h1 {
+
+    text-shadow:
+        0 0 10px rgba(56, 189, 248, 0.45);
+
+}
 
     .custom-data-title h1 {
         color: #F8FAFC !important;
