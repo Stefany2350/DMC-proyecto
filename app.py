@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Inyección de Estilos CSS Avanzados (Efectos de iluminación, paleta empresarial y animaciones)
+# Inyección de Estilos CSS Avanzados (Paleta Empresarial, Título Estilo Opción 3 e Iluminación)
 st.markdown("""
     <style>
     /* Paleta de colores empresarial y fondo general */
@@ -35,9 +35,57 @@ st.markdown("""
         color: #38BDF8;
     }
 
-    /* Tarjetas contenedoras con efecto de iluminación sutil (Glow) */
-    div.stMarkdown, div.stButton, div.stTextInput, div.stSelectbox, div.stNumberInput {
-        transition: all 0.3s ease-in-out;
+    /* ESTILO OPCIÓN 3: TÍTULOS EMPRESARIALES CON MOTIVO DE DATOS Y EFECTO INTERACTIVO */
+    .custom-data-title {
+        background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+        border: 1px solid #334155;
+        border-left: 5px solid #38BDF8;
+        padding: 24px 30px;
+        border-radius: 14px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 30px;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Sutil patrón de fondo tecnológico de datos */
+    .custom-data-title::before {
+        content: "";
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        background-image: radial-gradient(circle, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+        background-size: 20px 20px;
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+    /* Efecto interactivo al pasar el mouse por el título */
+    .custom-data-title:hover {
+        transform: translateY(-4px);
+        border-color: #38BDF8;
+        box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+    }
+
+    .custom-data-title h1 {
+        color: #F8FAFC !important;
+        font-size: 2.2rem !important;
+        font-weight: 700 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .custom-data-title p {
+        color: #94A3B8 !important;
+        font-size: 0.95rem !important;
+        margin: 6px 0 0 0 !important;
+        font-weight: 400 !important;
     }
 
     /* Efectos hover e iluminación en botones */
@@ -96,7 +144,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ==========================================
-# BARRA LATERAL
+# BARRA LATERAL (NAVEGACIÓN MEJORADA)
 # ==========================================
 st.sidebar.title("🎛️ Panel de Navegación")
 st.sidebar.markdown("---")
@@ -112,8 +160,12 @@ if modulos == "Home":
     st.sidebar.markdown("---")
     st.sidebar.image("image_home.png", use_container_width=True)
     
-    st.title("🚀 Aplicación de Python para la Gestión y Análisis de Datos")
-    st.subheader("Módulo: Python Fundamentals")
+    st.markdown("""
+        <div class="custom-data-title">
+            <h1>🚀 Aplicación de Python para la Gestión y Análisis de Datos</h1>
+            <p>Módulo: Python Fundamentals | Panel de Control General</p>
+        </div>
+    """, unsafe_allow_html=True)
     
     col_info1, col_info2 = st.columns(2)
     with col_info1:
@@ -145,7 +197,12 @@ elif modulos == "Ejercicio 1":
     st.sidebar.markdown("---")
     st.sidebar.image("image_ejercicio1.jpg", use_container_width=True)
     
-    st.title("💰 Flujo de caja con listas")
+    st.markdown("""
+        <div class="custom-data-title">
+            <h1>💰 Flujo de caja con listas</h1>
+            <p>Módulo Financiero - Análisis de Ingresos y Gastos</p>
+        </div>
+    """, unsafe_allow_html=True)
 
     st.markdown("""
     ### Descripción del ejercicio
@@ -223,7 +280,12 @@ elif modulos == "Ejercicio 2":
     st.sidebar.markdown("---")
     st.sidebar.image("image_ejercicio2.jpg", use_container_width=True)
     
-    st.title("📦 Formulario de registro de productos")
+    st.markdown("""
+        <div class="custom-data-title">
+            <h1>📦 Formulario de registro de productos</h1>
+            <p>Módulo de Inventario - Procesamiento con Arreglos NumPy</p>
+        </div>
+    """, unsafe_allow_html=True)
 
     st.markdown("""
     ### Descripción del ejercicio
@@ -294,7 +356,12 @@ elif modulos == "Ejercicio 3":
     st.sidebar.markdown("---")
     st.sidebar.image("image_ejercicio3.jpg", use_container_width=True)
     
-    st.title("📊 Cálculo de tasa de error de transacciones")
+    st.markdown("""
+        <div class="custom-data-title">
+            <h1>📊 Cálculo de tasa de error de transacciones</h1>
+            <p>Módulo de Control de Calidad - Métricas y Análisis de Datos</p>
+        </div>
+    """, unsafe_allow_html=True)
 
     st.markdown("""
     ### Descripción del ejercicio
@@ -355,7 +422,12 @@ elif modulos == "Ejercicio 4":
     st.sidebar.markdown("---")
     st.sidebar.image("image_ejercicio4.jpg", use_container_width=True)
     
-    st.title("🏥 Gestión de pacientes (CRUD)")
+    st.markdown("""
+        <div class="custom-data-title">
+            <h1>🏥 Gestión de pacientes (CRUD)</h1>
+            <p>Módulo de Programación Orientada a Objetos - Control Clínico</p>
+        </div>
+    """, unsafe_allow_html=True)
 
     st.markdown("""
     ### Descripción del ejercicio
