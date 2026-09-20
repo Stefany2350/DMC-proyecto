@@ -638,8 +638,11 @@ elif modulos == "Ejercicio 2":
     st.markdown("""
     ### Descripción del ejercicio
 
-   En este ejercicio se desarrolla un formulario interactivo que permite ingresar el nombre del producto, categoría, precio y cantidad,
-   calculando automáticamente el importe total de cada venta. Asimismo, permite visualizar y gestionar los registros ingresados""")
+   En este ejercicio se desarrolla un módulo interactivo para el registro y control de ventas, utilizando arreglos de NumPy
+   para almacenar y gestionar la información de los productos.
+   La aplicación permite registrar el nombre del producto, categoría, precio y cantidad, calculando automáticamente el total
+   de cada venta. Además, permite visualizar y gestionar los productos registrados.
+    """)
 
     st.markdown("---")
 
