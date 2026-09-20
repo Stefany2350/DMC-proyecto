@@ -50,32 +50,47 @@ st.markdown("""
 
     /* ==========================================
        TÍTULO DEL PANEL DE NAVEGACIÓN
+       MISMO GRADIENTE QUE LOS TÍTULOS PRINCIPALES
        ========================================== */
 
     .sidebar-custom-title {
+
         background: linear-gradient(
             135deg,
-            #1E293B 0%,
+            #0F172A 0%,
+            #1D4ED8 35%,
+            #2563EB 55%,
+            #38BDF8 75%,
             #0F172A 100%
         ) !important;
 
+        background-size: 250% 250% !important;
+
         border: 1px solid #475569 !important;
-        border-left: 5px solid #38BDF8 !important;
+
+        border-left: 6px solid #38BDF8 !important;
 
         padding: 16px 20px !important;
 
         border-radius: 10px !important;
 
         box-shadow:
-            0 4px 15px rgba(0, 0, 0, 0.3) !important;
+            0 10px 30px rgba(0, 0, 0, 0.5),
+            0 0 20px rgba(37, 99, 235, 0.15) !important;
 
         position: relative !important;
+
         overflow: hidden !important;
 
         margin-bottom: 20px !important;
+
+        animation:
+            tituloGradient 6s ease infinite !important;
     }
 
+
     .sidebar-custom-title h2 {
+
         color: #F8FAFC !important;
 
         font-size: 1.25rem !important;
@@ -83,6 +98,9 @@ st.markdown("""
         font-weight: 700 !important;
 
         margin: 0 !important;
+
+        text-shadow:
+            0 2px 8px rgba(0, 0, 0, 0.35) !important;
     }
 
 
