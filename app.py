@@ -236,7 +236,6 @@ elif modulos == "Ejercicio 1":
     st.markdown("""
         <div class="custom-data-title">
             <h1>💰 Flujo de caja con listas</h1>
-            <p>Módulo Financiero - Análisis de Ingresos y Gastos</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -427,15 +426,14 @@ elif modulos == "Ejercicio 2":
 
     st.markdown("""
         <div class="custom-data-title">
-            <h1>📦 Formulario de registro de productos</h1>
-            <p>Módulo de Inventario - Procesamiento con Arreglos NumPy</p>
+            <h1>📦 Formulario de registro de ventas</h1>
         </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
     ### Descripción del ejercicio
 
-    En este ejercicio se desarrolla un formulario para registrar productos
+    En este ejercicio se desarrolla un formulario para registrar ventas
     utilizando **arreglos de NumPy**.
 
     El total se calcula automáticamente multiplicando el precio por
@@ -608,7 +606,6 @@ elif modulos == "Ejercicio 3":
     st.markdown("""
         <div class="custom-data-title">
             <h1>📊 Cálculo de tasa de error de transacciones</h1>
-            <p>Módulo de Control de Calidad - Métricas y Análisis de Datos</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -763,7 +760,6 @@ elif modulos == "Ejercicio 4":
     st.markdown("""
         <div class="custom-data-title">
             <h1>🏥 Gestión de pacientes</h1>
-            <p>Módulo de Programación Orientada a Objetos - CRUD</p>
         </div>
     """, unsafe_allow_html=True)
 
