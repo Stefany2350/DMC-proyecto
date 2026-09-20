@@ -197,7 +197,7 @@ if modulos == "Home":
         st.write("**Estudiante:** Stefany Salazar Espinoza")
 
     with col_info3:
-        st.write("           ")
+        st.write(" ")
 
     with col_info4:
         st.write("**Año:** 2026")
