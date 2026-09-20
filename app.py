@@ -391,6 +391,7 @@ if modulos == "Home":
         st.image("Numpy.png", width=220)
 
     with col4:
+        st.markdown("<br><br>", unsafe_allow_html=True)
         st.image("streamlit.jpg", width=220)
     
 
