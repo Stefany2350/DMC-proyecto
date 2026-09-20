@@ -420,11 +420,11 @@ elif modulos == "Ejercicio 1":
     st.markdown("""
     ### Descripción del ejercicio
 
-    En este ejercicio se desarrolla un módulo para registrar movimientos
-    financieros utilizando **listas**.
-
-    Cada movimiento contiene un concepto, un tipo de movimiento y un valor.
-    La aplicación permite calcular los ingresos, gastos y el saldo final.
+    En este ejercicio se desarrolla un módulo para el registro y control de movimientos de flujo de caja,
+    utilizando listas de Python para almacenar y gestionar la información.
+    Permite registrar ingresos y gastos, indicando el concepto y valor de cada movimiento. 
+    A partir de los registros ingresados, se calculan automáticamente el total de ingresos, total de gastos
+    y saldo final, permitiendo conocer el estado del flujo de caja.
     """)
 
 
@@ -837,12 +837,12 @@ elif modulos == "Ejercicio 3":
     st.markdown("""
     ### Descripción del ejercicio
 
-    En este ejercicio se utilizará una función desde una librería externa
-    para calcular la **tasa de error** y la **tasa de éxito** de un conjunto
-    de transacciones.
-
-    La función recibe como parámetros el número de transacciones fallidas
-    y el número de transacciones totales.
+    En este ejercicio se desarrolla un módulo para analizar el desempeño de un conjunto de transacciones, utilizando una función definida
+    en una librería externa de Python.
+    La aplicación permite ingresar el periodo de análisis, número de transacciones fallidas y número total de transacciones. 
+    A partir de estos datos, la función calcula automáticamente la tasa de error y la tasa de éxito, mostrando los resultados obtenidos de
+    manera interactiva. Asimismo, se mantiene un histórico de los análisis realizados, permitiendo visualizar y gestionar los resultados
+    registrados.
     """)
 
 
