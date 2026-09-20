@@ -270,7 +270,7 @@ if modulos == "Home":
         </div>
     """, unsafe_allow_html=True)
     
-    col_info1, col_info2 = st.columns(4)
+    col_info1, col_info2 = st.columns(3)
     with col_info1:
         st.write("**Estudiante:** Stefany Salazar Espinoza")
     with col_info2:
