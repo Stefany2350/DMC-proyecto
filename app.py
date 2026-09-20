@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Inyección de Estilos CSS Avanzados (Paleta Empresarial, Título Estilo Opción 3 e Iluminación)
+# Inyección de Estilos CSS Avanzados (Paleta Empresarial, Título Estilo Opción 3 con Hover Mejorado)
 st.markdown("""
     <style>
     /* Paleta de colores empresarial y fondo general */
@@ -35,7 +35,7 @@ st.markdown("""
         color: #38BDF8;
     }
 
-    /* ESTILO OPCIÓN 3: TÍTULOS EMPRESARIALES CON MOTIVO DE DATOS Y EFECTO INTERACTIVO */
+    /* ESTILO OPCIÓN 3 MEJORADO: TÍTULO INTERACTIVO CON HOVER DINÁMICO */
     .custom-data-title {
         background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
         border: 1px solid #334155;
@@ -54,17 +54,24 @@ st.markdown("""
         content: "";
         position: absolute;
         top: 0; right: 0; bottom: 0; left: 0;
-        background-image: radial-gradient(circle, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+        background-image: radial-gradient(circle, rgba(56, 189, 248, 0.1) 1px, transparent 1px);
         background-size: 20px 20px;
-        opacity: 0.6;
+        opacity: 0.5;
         pointer-events: none;
+        transition: opacity 0.4s ease;
     }
 
-    /* Efecto interactivo al pasar el mouse por el título */
+    /* EFECTO INTERACTIVO AL PASAR EL CURSOR (HOVER) */
     .custom-data-title:hover {
+        background: linear-gradient(135deg, #253349 0%, #131E33 100%);
         transform: translateY(-4px);
         border-color: #38BDF8;
-        box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+        border-left-color: #60A5FA;
+        box-shadow: 0 0 35px rgba(56, 189, 248, 0.35);
+    }
+
+    .custom-data-title:hover::before {
+        opacity: 0.9; /* Ilumina más el patrón de puntos al pasar el mouse */
     }
 
     .custom-data-title h1 {
@@ -86,6 +93,11 @@ st.markdown("""
         font-size: 0.95rem !important;
         margin: 6px 0 0 0 !important;
         font-weight: 400 !important;
+        transition: color 0.3s ease;
+    }
+
+    .custom-data-title:hover p {
+        color: #CBD5E1 !important; /* El subtítulo se aclara ligeramente al pasar el cursor */
     }
 
     /* Efectos hover e iluminación en botones */
