@@ -639,9 +639,7 @@ elif modulos == "Ejercicio 2":
     ### Descripción del ejercicio
 
    En este ejercicio se desarrolla un formulario interactivo que permite ingresar el nombre del producto, categoría, precio y cantidad,
-   calculando automáticamente el importe total de cada venta. Asimismo, permite visualizar los registros ingresados
-   y gestionar la información """)
-
+   calculando automáticamente el importe total de cada venta. Asimismo, permite visualizar y gestionar los registros ingresados""")
 
     st.markdown("---")
 
