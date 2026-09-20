@@ -376,22 +376,22 @@ if modulos == "Home":
 
     ### 🛠️ Tecnologías utilizadas  """)
 
-col1, col2 = st.columns(2)
+    col1, col2 = st.columns(2)
 
-with col1:
-    st.image("Python_logo.png", width=220)
+    with col1:
+        st.image("Python_logo.png", width=220)
 
-with col2:
-    st.image("GitHub.png", width=220)
+    with col2:
+        st.image("GitHub.png", width=220)
 
 
-col3, col4 = st.columns(2)
+    col3, col4 = st.columns(2)
 
-with col3:
-    st.image("Numpy.png", width=220)
+    with col3:
+        st.image("Numpy.png", width=220)
 
-with col4:
-    st.image("streamlit.jpg", width=220)
+    with col4:
+        st.image("streamlit.jpg", width=220)
     
 
 # ==========================================
