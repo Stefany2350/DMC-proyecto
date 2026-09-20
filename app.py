@@ -186,8 +186,7 @@ if modulos == "Home":
     st.markdown("""
         <div class="custom-data-title">
             <h1>🚀 Aplicación de Python para la Gestión y Análisis de Datos</h1>
-        </div>
-    """, unsafe_allow_html=True)
+      """, unsafe_allow_html=True)
 
     col_info1, col_info2, col_info3  = st.columns(3)
 
