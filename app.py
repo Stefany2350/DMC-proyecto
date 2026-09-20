@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Inyección de Estilos CSS Avanzados (Efecto IA Glow y Gradiente Dinámico en Títulos)
+# Inyección de Estilos CSS Avanzados (Estilo Opción 3 Exacto con Línea Lateral y Puntos de Datos)
 st.markdown("""
     <style>
     /* Paleta de colores empresarial y fondo general */
@@ -39,71 +39,71 @@ st.markdown("""
        OPCIÓN 3: TÍTULO INTERACTIVO CON IA GLOW Y GRADIENTE DINÁMICO
        ======================================================== */
     .custom-data-title {
-        background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
-        border: 1px solid #334155;
-        border-left: 5px solid #38BDF8;
-        padding: 24px 30px;
-        border-radius: 14px;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-        position: relative;
-        overflow: hidden;
-        margin-bottom: 30px;
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%) !important;
+        border: 1px solid #334155 !important;
+        border-left: 6px solid #38BDF8 !important;
+        padding: 24px 30px !important;
+        border-radius: 14px !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+        position: relative !important;
+        overflow: hidden !important;
+        margin-bottom: 30px !important;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
 
-    /* Patrón de puntos de datos estático */
+    /* Patrón de puntos de datos tecnológicos de fondo */
     .custom-data-title::before {
-        content: "";
-        position: absolute;
-        top: 0; right: 0; bottom: 0; left: 0;
-        background-image: radial-gradient(circle, rgba(56, 189, 248, 0.12) 1px, transparent 1px);
-        background-size: 20px 20px;
-        opacity: 0.6;
-        pointer-events: none;
+        content: "" !important;
+        position: absolute !important;
+        top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important;
+        background-image: radial-gradient(circle, rgba(56, 189, 248, 0.18) 1.5px, transparent 1.5px) !important;
+        background-size: 18px 18px !important;
+        opacity: 0.7 !important;
+        pointer-events: none !important;
     }
 
-    /* Capa adicional para el gradiente dinámico y brillo (IA Glow) al hacer hover */
+    /* Capa de brillo y gradiente dinámico (IA Glow) al pasar el cursor */
     .custom-data-title::after {
-        content: "";
-        position: absolute;
-        top: 0; right: 0; bottom: 0; left: 0;
-        background: linear-gradient(135deg, rgba(37, 99, 235, 0.25) 0%, rgba(56, 189, 248, 0.15) 100%);
-        opacity: 0;
-        transition: opacity 0.4s ease-in-out;
-        pointer-events: none;
-        z-index: 1;
+        content: "" !important;
+        position: absolute !important;
+        top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important;
+        background: linear-gradient(135deg, rgba(37, 99, 235, 0.3) 0%, rgba(56, 189, 248, 0.2) 100%) !important;
+        opacity: 0 !important;
+        transition: opacity 0.4s ease-in-out !important;
+        pointer-events: none !important;
+        z-index: 1 !important;
     }
 
-    /* ASEGURAR QUE EL TEXTO ESTÉ POR ENCIMA DE LA CAPA DE BRILLO */
+    /* Asegurar que el contenido interno esté sobre las capas de diseño */
     .custom-data-title > * {
-        position: relative;
-        z-index: 2;
+        position: relative !important;
+        z-index: 2 !important;
     }
 
-    /* EFECTO INTERACTIVO AL PASAR EL CURSOR (HOVER) */
+    /* Efecto interactivo al pasar el cursor (Hover) */
     .custom-data-title:hover {
-        transform: translateY(-5px);
-        border-color: #38BDF8;
-        border-left-color: #60A5FA;
-        box-shadow: 0 0 35px rgba(56, 189, 248, 0.4), inset 0 0 15px rgba(56, 189, 248, 0.15);
+        transform: translateY(-4px) !important;
+        border-color: #38BDF8 !important;
+        border-left-color: #60A5FA !important;
+        box-shadow: 0 0 40px rgba(56, 189, 248, 0.5), inset 0 0 20px rgba(56, 189, 248, 0.2) !important;
     }
 
     .custom-data-title:hover::after {
-        opacity: 1; /* Activa el destello del gradiente dinámico */
+        opacity: 1 !important;
     }
 
     .custom-data-title h1 {
         color: #F8FAFC !important;
-        font-size: 2.2rem !important;
+        font-size: 2.1rem !important;
         font-weight: 700 !important;
         margin: 0 !important;
         padding: 0 !important;
         background: none !important;
         box-shadow: none !important;
         border: none !important;
-        display: flex;
-        align-items: center;
-        gap: 12px;
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
     }
 
     .custom-data-title p {
@@ -111,7 +111,7 @@ st.markdown("""
         font-size: 0.95rem !important;
         margin: 6px 0 0 0 !important;
         font-weight: 400 !important;
-        transition: color 0.3s ease;
+        transition: color 0.3s ease !important;
     }
 
     .custom-data-title:hover p {
