@@ -33,7 +33,7 @@ if modulos == "Home":
    st.image("Python_logo.png", width=300)
   
 elif modulos == "Ejercicio 1":
-    st.sidebar.image("image_ejercicio1.png")
+    st.sidebar.image("image_ejercicio1.jpg")
     st.title("Flujo de caja con listas")
 
     st.markdown("""
@@ -152,7 +152,7 @@ elif modulos == "Ejercicio 1":
 ###############################################################################################################
 
 elif modulos == "Ejercicio 2":
-    st.sidebar.image("image_ejercicio2.png")
+    st.sidebar.image("image_ejercicio2.jpg")
     st.title("Formulario de registro de productos")
 
     st.markdown("""
@@ -279,7 +279,7 @@ elif modulos == "Ejercicio 2":
 ##################################################################################################################################
 
 elif modulos == "Ejercicio 3":
-    st.sidebar.image("image_ejercicio3.png")
+    st.sidebar.image("image_ejercicio3.jpg")
     st.title("Cálculo de tasa de error de transacciones")
 
     st.markdown("""
@@ -393,7 +393,7 @@ elif modulos == "Ejercicio 3":
 
 ###############################################################################################################################################
 elif modulos == "Ejercicio 4":
-    st.sidebar.image("image_ejercicio4.png")
+    st.sidebar.image("image_ejercicio4.jpg")
     st.title("Gestión de pacientes")
 
     st.markdown("""
