@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Inyección de Estilos CSS Avanzados (Estilo Opción 3 Exacto con Línea Lateral y Puntos de Datos)
+# Inyección de Estilos CSS Avanzados con Gradiente Interactivo Animado al Hover
 st.markdown("""
     <style>
     /* Paleta de colores empresarial y fondo general */
@@ -36,8 +36,20 @@ st.markdown("""
     }
 
     /* ========================================================
-       OPCIÓN 3: TÍTULO INTERACTIVO CON IA GLOW Y GRADIENTE DINÁMICO
-       ======================================================== */
+        TÍTULO INTERACTIVO CON GRADIENTE ANIMADO AL HOVER
+        ======================================================== */
+    @keyframes gradientShift {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
     .custom-data-title {
         background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%) !important;
         border: 1px solid #334155 !important;
@@ -62,12 +74,13 @@ st.markdown("""
         pointer-events: none !important;
     }
 
-    /* Capa de brillo y gradiente dinámico (IA Glow) al pasar el cursor */
+    /* Capa de gradiente interactivo animado al pasar el cursor */
     .custom-data-title::after {
         content: "" !important;
         position: absolute !important;
         top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important;
-        background: linear-gradient(135deg, rgba(37, 99, 235, 0.3) 0%, rgba(56, 189, 248, 0.2) 100%) !important;
+        background: linear-gradient(120deg, rgba(37, 99, 235, 0.45), rgba(56, 189, 248, 0.35), rgba(124, 58, 237, 0.4)) !important;
+        background-size: 200% 200% !important;
         opacity: 0 !important;
         transition: opacity 0.4s ease-in-out !important;
         pointer-events: none !important;
@@ -80,16 +93,17 @@ st.markdown("""
         z-index: 2 !important;
     }
 
-    /* Efecto interactivo al pasar el cursor (Hover) */
+    /* Efecto interactivo al pasar el cursor (Hover) con animación fluida de gradiente */
     .custom-data-title:hover {
         transform: translateY(-4px) !important;
         border-color: #38BDF8 !important;
         border-left-color: #60A5FA !important;
-        box-shadow: 0 0 40px rgba(56, 189, 248, 0.5), inset 0 0 20px rgba(56, 189, 248, 0.2) !important;
+        box-shadow: 0 0 40px rgba(56, 189, 248, 0.5), inset 0 0 20px rgba(56, 189, 248, 0.3) !important;
     }
 
     .custom-data-title:hover::after {
         opacity: 1 !important;
+        animation: gradientShift 4s ease infinite !important;
     }
 
     .custom-data-title h1 {
@@ -517,7 +531,6 @@ elif modulos == "Ejercicio 4":
                 st.rerun()
     else:
         st.info("No hay pacientes registrados en la base de datos temporal.")
-
 
 
 
