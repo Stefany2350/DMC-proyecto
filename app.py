@@ -638,12 +638,9 @@ elif modulos == "Ejercicio 2":
     st.markdown("""
     ### Descripción del ejercicio
 
-    En este ejercicio se desarrolla un formulario para registrar ventas
-    utilizando **arreglos de NumPy**.
-
-    El total se calcula automáticamente multiplicando el precio por
-    la cantidad.
-    """)
+   En este ejercicio se desarrolla un formulario interactivo que permite ingresar el nombre del producto, categoría, precio y cantidad,
+   calculando automáticamente el importe total de cada venta. Asimismo, permite visualizar los registros ingresados
+   y gestionar la información """)
 
 
     st.markdown("---")
