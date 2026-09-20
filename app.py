@@ -385,21 +385,20 @@ if modulos == "Home":
 
     st.image(
         "Python_logo.png",
-        width=250
+        width=250)
 
     st.image(
         "GitHub.png",
-        width=250
+        width=250)
 
     st.image(
         "Numpy.png",
-        width=250
+        width=250)
 
     st.image(
         "streamlit.jpg",
-        width=250
-    )
-
+        width=250)
+    
 
 # ==========================================
 # EJERCICIO 1 - FLUJO DE CAJA
