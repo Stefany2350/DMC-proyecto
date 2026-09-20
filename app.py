@@ -188,7 +188,7 @@ if modulos == "Home":
             <h1> Aplicación de Python para la Gestión y Análisis de Datos</h1>
       """, unsafe_allow_html=True)
 
-    col_info1, col_info2, col_info3, col_info4  = st.columns(4)
+    col_info1, col_info2, col_info3 = st.columns(3)
 
     with col_info1:
         st.write("**Módulo:** Python Fundamentals")
@@ -197,9 +197,6 @@ if modulos == "Home":
         st.write("**Estudiante:** Stefany Salazar Espinoza")
 
     with col_info3:
-        st.write(" ")
-
-    with col_info4:
         st.write("**Año:** 2026")
 
     st.markdown("---")
