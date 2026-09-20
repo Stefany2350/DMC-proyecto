@@ -186,16 +186,18 @@ if modulos == "Home":
     st.markdown("""
         <div class="custom-data-title">
             <h1>🚀 Aplicación de Python para la Gestión y Análisis de Datos</h1>
-            <p>Módulo: Python Fundamentals | Panel de Control General</p>
         </div>
     """, unsafe_allow_html=True)
 
-    col_info1, col_info2 = st.columns(2)
+    col_info1, col_info2, col_info3  = st.columns(3)
 
     with col_info1:
-        st.write("**Estudiante:** Stefany Salazar Espinoza")
+        st.write("**Módulo:** Python Fundamentals")
 
     with col_info2:
+        st.write("**Estudiante:** Stefany Salazar Espinoza")
+
+    with col_info3:
         st.write("**Año:** 2026")
 
     st.markdown("---")
