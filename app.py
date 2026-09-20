@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Inyección de Estilos CSS Avanzados con Gradiente Interactivo Animado al Hover
+# Inyección de Estilos CSS Avanzados con Gradiente Interactivo Animado al Hover (Títulos Principales y Sidebar)
 st.markdown("""
     <style>
     /* Paleta de colores empresarial y fondo general */
@@ -29,15 +29,7 @@ st.markdown("""
         border-right: 1px solid #1F2937;
     }
     
-    [data-testid="stSidebar"] .stMarkdown h1, 
-    [data-testid="stSidebar"] .stMarkdown h2, 
-    [data-testid="stSidebar"] .stMarkdown h3 {
-        color: #38BDF8;
-    }
-
-    /* ========================================================
-        TÍTULO INTERACTIVO CON GRADIENTE ANIMADO AL HOVER
-        ======================================================== */
+    /* Animación fluida de gradiente dinámico */
     @keyframes gradientShift {
         0% {
             background-position: 0% 50%;
@@ -50,6 +42,76 @@ st.markdown("""
         }
     }
 
+    /* ========================================================
+        TÍTULO DEL SIDEBAR (PANEL DE NAVEGACIÓN INTERACTIVO)
+        ======================================================== */
+    .sidebar-custom-title {
+        background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%) !important;
+        border: 1px solid #334155 !important;
+        border-left: 5px solid #38BDF8 !important;
+        padding: 14px 18px !important;
+        border-radius: 10px !important;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+        position: relative !important;
+        overflow: hidden !important;
+        margin-bottom: 15px !important;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    /* Patrón de puntos para la sidebar */
+    .sidebar-custom-title::before {
+        content: "" !important;
+        position: absolute !important;
+        top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important;
+        background-image: radial-gradient(circle, rgba(56, 189, 248, 0.15) 1.2px, transparent 1.2px) !important;
+        background-size: 14px 14px !important;
+        opacity: 0.6 !important;
+        pointer-events: none !important;
+    }
+
+    /* Gradiente animado al pasar el cursor en la sidebar */
+    .sidebar-custom-title::after {
+        content: "" !important;
+        position: absolute !important;
+        top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important;
+        background: linear-gradient(120deg, rgba(37, 99, 235, 0.4), rgba(56, 189, 248, 0.3), rgba(124, 58, 237, 0.35)) !important;
+        background-size: 200% 200% !important;
+        opacity: 0 !important;
+        transition: opacity 0.4s ease-in-out !important;
+        pointer-events: none !important;
+        z-index: 1 !important;
+    }
+
+    .sidebar-custom-title > * {
+        position: relative !important;
+        z-index: 2 !important;
+    }
+
+    .sidebar-custom-title:hover {
+        transform: translateY(-2px) !important;
+        border-color: #38BDF8 !important;
+        box-shadow: 0 0 25px rgba(56, 189, 248, 0.4), inset 0 0 12px rgba(56, 189, 248, 0.2) !important;
+    }
+
+    .sidebar-custom-title:hover::after {
+        opacity: 1 !important;
+        animation: gradientShift 4s ease infinite !important;
+    }
+
+    .sidebar-custom-title h2 {
+        color: #F8FAFC !important;
+        font-size: 1.25rem !important;
+        font-weight: 700 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+    }
+
+    /* ========================================================
+        TÍTULOS PRINCIPALES CON IA GLOW Y GRADIENTE DINÁMICO
+        ======================================================== */
     .custom-data-title {
         background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%) !important;
         border: 1px solid #334155 !important;
@@ -191,7 +253,12 @@ st.markdown("""
 # ==========================================
 # BARRA LATERAL (NAVEGACIÓN MEJORADA)
 # ==========================================
-st.sidebar.title("🎛️ Panel de Navegación")
+st.sidebar.markdown("""
+    <div class="sidebar-custom-title">
+        <h2>🎛️ Panel de Navegación</h2>
+    </div>
+""", unsafe_allow_html=True)
+
 st.sidebar.markdown("---")
 modulos = st.sidebar.selectbox(
     "Seleccione la sección a consultar",
