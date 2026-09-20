@@ -1,10 +1,9 @@
 import streamlit as st
 import numpy as np
 import libreria_funciones_proyecto1 as lf
-import librería_clases_proyecto1 as lc
-
+import libreria_clases_proyecto1 as lc
 # ==========================================
-# CONFIGURACIÓN DE LA PÁGINA Y ESTILOS CSS
+# CONFIGURACIÓN DE LA PÁGINA
 # ==========================================
 st.set_page_config(
     page_title="Gestión y Análisis de Datos - Python Fundamentals",
@@ -13,35 +12,37 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Inyección de Estilos CSS Avanzados (Paleta Slate Soft + Gradientes Interactivos IA Glow)
+# ==========================================
+# ESTILOS CSS
+# ==========================================
+
 st.markdown("""
     <style>
-    /* --------------------------------------------------------
-       PALETA SLATE SOFT & CONTENEDORES PRINCIPALES
-       -------------------------------------------------------- */
+
     .stApp {
-        background-color: #1E293B; /* Slate 800: Fondo general más suave y moderno */
+        background-color: #1E293B;
         color: #F8FAFC;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    
-    /* Estilo del Sidebar (Panel de Navegación) en Slate 700 */
+
     [data-testid="stSidebar"] {
         background-color: #334155;
         border-right: 1px solid #475569;
     }
-    
-    [data-testid="stSidebar"] .stMarkdown h1, 
-    [data-testid="stSidebar"] .stMarkdown h2, 
+
+    [data-testid="stSidebar"] .stMarkdown h1,
+    [data-testid="stSidebar"] .stMarkdown h2,
     [data-testid="stSidebar"] .stMarkdown h3 {
         color: #38BDF8;
     }
 
-    /* --------------------------------------------------------
-       TÍTULO DEL SIDEBAR CON GRADIENTE ANIMADO E IA GLOW
-       -------------------------------------------------------- */
     .sidebar-custom-title {
-        background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%) !important;
+        background: linear-gradient(
+            135deg,
+            #1E293B 0%,
+            #0F172A 100%
+        ) !important;
+
         border: 1px solid #475569 !important;
         border-left: 5px solid #38BDF8 !important;
         padding: 16px 20px !important;
@@ -50,43 +51,6 @@ st.markdown("""
         position: relative !important;
         overflow: hidden !important;
         margin-bottom: 20px !important;
-        transition: all 0.4s ease !important;
-    }
-
-    .sidebar-custom-title::before {
-        content: "" !important;
-        position: absolute !important;
-        top: 0; right: 0; bottom: 0; left: 0;
-        background-image: radial-gradient(circle, rgba(56, 189, 248, 0.15) 1.5px, transparent 1.5px) !important;
-        background-size: 14px 14px !important;
-        opacity: 0.6 !important;
-        pointer-events: none !important;
-    }
-
-    .sidebar-custom-title::after {
-        content: "" !important;
-        position: absolute !important;
-        top: 0; right: 0; bottom: 0; left: 0;
-        background: linear-gradient(135deg, rgba(37, 99, 235, 0.3) 0%, rgba(56, 189, 248, 0.3) 100%) !important;
-        opacity: 0 !important;
-        transition: opacity 0.4s ease-in-out !important;
-        pointer-events: none !important;
-        z-index: 1 !important;
-    }
-
-    .sidebar-custom-title > * {
-        position: relative !important;
-        z-index: 2 !important;
-    }
-
-    .sidebar-custom-title:hover {
-        transform: translateY(-2px) !important;
-        border-color: #38BDF8 !important;
-        box-shadow: 0 0 25px rgba(56, 189, 248, 0.4) !important;
-    }
-
-    .sidebar-custom-title:hover::after {
-        opacity: 1 !important;
     }
 
     .sidebar-custom-title h2 {
@@ -96,70 +60,20 @@ st.markdown("""
         margin: 0 !important;
     }
 
-    /* --------------------------------------------------------
-       TÍTULOS PRINCIPALES CON GRADIENTE ANIMADO E IA GLOW
-       -------------------------------------------------------- */
-    @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
     .custom-data-title {
-        background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%) !important;
-        background-size: 200% 200% !important;
+        background: linear-gradient(
+            135deg,
+            #0F172A 0%,
+            #1E293B 50%,
+            #0F172A 100%
+        ) !important;
+
         border: 1px solid #475569 !important;
         border-left: 6px solid #38BDF8 !important;
         padding: 24px 30px !important;
         border-radius: 14px !important;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
-        position: relative !important;
-        overflow: hidden !important;
         margin-bottom: 30px !important;
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }
-
-    /* Patrón de puntos de datos tecnológicos de fondo */
-    .custom-data-title::before {
-        content: "" !important;
-        position: absolute !important;
-        top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important;
-        background-image: radial-gradient(circle, rgba(56, 189, 248, 0.18) 1.5px, transparent 1.5px) !important;
-        background-size: 18px 18px !important;
-        opacity: 0.7 !important;
-        pointer-events: none !important;
-    }
-
-    /* Capa de brillo y gradiente dinámico interactivo (IA Glow) */
-    .custom-data-title::after {
-        content: "" !important;
-        position: absolute !important;
-        top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important;
-        background: linear-gradient(120deg, rgba(37, 99, 235, 0.4), rgba(56, 189, 248, 0.3), rgba(147, 51, 234, 0.3)) !important;
-        background-size: 200% 200% !important;
-        opacity: 0 !important;
-        transition: opacity 0.4s ease-in-out !important;
-        pointer-events: none !important;
-        z-index: 1 !important;
-    }
-
-    .custom-data-title > * {
-        position: relative !important;
-        z-index: 2 !important;
-    }
-
-    /* Efecto interactivo al pasar el cursor (Hover) con Gradiente en Movimiento */
-    .custom-data-title:hover {
-        transform: translateY(-4px) !important;
-        border-color: #38BDF8 !important;
-        border-left-color: #60A5FA !important;
-        box-shadow: 0 0 40px rgba(56, 189, 248, 0.5), inset 0 0 20px rgba(56, 189, 248, 0.2) !important;
-        animation: gradientShift 4s ease infinite !important;
-    }
-
-    .custom-data-title:hover::after {
-        opacity: 1 !important;
-        animation: gradientShift 4s ease infinite !important;
     }
 
     .custom-data-title h1 {
@@ -167,32 +81,21 @@ st.markdown("""
         font-size: 2.1rem !important;
         font-weight: 700 !important;
         margin: 0 !important;
-        padding: 0 !important;
-        background: none !important;
-        box-shadow: none !important;
-        border: none !important;
-        display: flex !important;
-        align-items: center !important;
-        gap: 12px !important;
     }
 
     .custom-data-title p {
         color: #94A3B8 !important;
         font-size: 0.95rem !important;
         margin: 6px 0 0 0 !important;
-        font-weight: 400 !important;
-        transition: color 0.3s ease !important;
     }
 
-    .custom-data-title:hover p {
-        color: #E2E8F0 !important;
-    }
-
-    /* --------------------------------------------------------
-       ESTILOS PARA BOTONES, INPUTS Y MÉTRICAS
-       -------------------------------------------------------- */
     .stButton > button {
-        background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+        background: linear-gradient(
+            135deg,
+            #2563EB 0%,
+            #1D4ED8 100%
+        );
+
         color: white;
         border: none;
         border-radius: 8px;
@@ -203,21 +106,23 @@ st.markdown("""
     }
 
     .stButton > button:hover {
-        background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+        background: linear-gradient(
+            135deg,
+            #3B82F6 0%,
+            #2563EB 100%
+        );
+
         box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
         transform: translateY(-2px);
     }
 
-    .stTextInput input, .stSelectbox select, .stNumberInput input {
+    .stTextInput input,
+    .stSelectbox select,
+    .stNumberInput input {
         background-color: #0F172A !important;
         color: #F8FAFC !important;
         border: 1px solid #475569 !important;
         border-radius: 8px !important;
-    }
-    
-    .stTextInput input:focus, .stSelectbox select:focus, .stNumberInput input:focus {
-        border-color: #38BDF8 !important;
-        box-shadow: 0 0 10px rgba(56, 189, 248, 0.3) !important;
     }
 
     [data-testid="stMetric"] {
@@ -227,9 +132,11 @@ st.markdown("""
         border: 1px solid #475569;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
     }
+
     [data-testid="stMetricLabel"] {
         color: #94A3B8 !important;
     }
+
     [data-testid="stMetricValue"] {
         color: #38BDF8 !important;
     }
@@ -239,67 +146,92 @@ st.markdown("""
         overflow: hidden;
         border: 1px solid #475569;
     }
+
     </style>
 """, unsafe_allow_html=True)
 
 # ==========================================
-# BARRA LATERAL (NAVEGACIÓN MEJORADA)
+# BARRA LATERAL
 # ==========================================
+
 st.sidebar.markdown("""
     <div class="sidebar-custom-title">
         <h2>🎛️ Panel de Navegación</h2>
     </div>
 """, unsafe_allow_html=True)
 
+
 modulos = st.sidebar.selectbox(
     "Seleccione la sección a consultar",
-    ["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"]
+    [
+        "Home",
+        "Ejercicio 1",
+        "Ejercicio 2",
+        "Ejercicio 3",
+        "Ejercicio 4"
+    ]
 )
+# ==========================================
+# HOME
+# ==========================================
 
-# ==========================================
-# SECCIÓN: HOME
-# ==========================================
 if modulos == "Home":
+
     st.sidebar.markdown("---")
-    st.sidebar.image("image_home.png", use_container_width=True)
-    
+    st.sidebar.image(
+        "image_home.png",
+        use_container_width=True
+    )
+
     st.markdown("""
         <div class="custom-data-title">
             <h1>🚀 Aplicación de Python para la Gestión y Análisis de Datos</h1>
             <p>Módulo: Python Fundamentals | Panel de Control General</p>
         </div>
     """, unsafe_allow_html=True)
-    
+
     col_info1, col_info2 = st.columns(2)
+
     with col_info1:
         st.write("**Estudiante:** Stefany Salazar Espinoza")
+
     with col_info2:
         st.write("**Año:** 2026")
-        
+
     st.markdown("---")
-    
+
     st.markdown("""
     ### 💡 Descripción del Proyecto
-    El presente proyecto tiene como objetivo aplicar los conocimientos adquiridos en el módulo **Python Fundamentals**, 
-    permitiendo evidenciar el uso de estructuras de datos, widgets, funciones, clases y lógica de programación 
-    mediante la creación de una interfaz interactiva y de alto rendimiento visual.
 
-    ### 🛠️ Tecnologías Utilizadas
-    - **Python** (Lógica y procesamiento)
-    - **Streamlit** (Interfaz de usuario interactiva)
-    - **NumPy** (Estructuras de datos optimizadas)
-    - **GitHub** (Control de versiones)
+    El presente proyecto tiene como objetivo aplicar los conocimientos
+    adquiridos en el módulo **Python Fundamentals**, mediante el desarrollo
+    de diferentes ejercicios utilizando estructuras de datos, funciones,
+    clases y una interfaz interactiva desarrollada con Streamlit.
+
+    ### 🛠️ Tecnologías utilizadas
+
+    - **Python**
+    - **Streamlit**
+    - **NumPy**
+    - **GitHub**
     """)
 
-    st.image("Python_logo.png", width=250)
+    st.image(
+        "Python_logo.png",
+        width=250
+    )
+# ==========================================
+# EJERCICIO 1 - FLUJO DE CAJA
+# ==========================================
 
-# ==========================================
-# SECCIÓN: EJERCICIO 1 (Flujo de caja)
-# ==========================================
 elif modulos == "Ejercicio 1":
+
     st.sidebar.markdown("---")
-    st.sidebar.image("image_ejercicio1.jpg", use_container_width=True)
-    
+    st.sidebar.image(
+        "image_ejercicio1.jpg",
+        use_container_width=True
+    )
+
     st.markdown("""
         <div class="custom-data-title">
             <h1>💰 Flujo de caja con listas</h1>
@@ -309,80 +241,189 @@ elif modulos == "Ejercicio 1":
 
     st.markdown("""
     ### Descripción del ejercicio
-    En este ejercicio se desarrolla un módulo para registrar movimientos financieros utilizando listas. 
-    Permite registrar ingresos y gastos, calcular subtotales y determinar el **saldo final del flujo de caja**.
+
+    En este ejercicio se desarrolla un módulo para registrar movimientos
+    financieros utilizando **listas**.
+
+    Cada movimiento contiene un concepto, un tipo de movimiento y un valor.
+    La aplicación permite calcular los ingresos, gastos y el saldo final.
     """)
 
     st.markdown("---")
+
     st.subheader("Registrar movimiento")
 
-    concepto = st.text_input("Ingrese el concepto del movimiento")
-    tipo = st.selectbox("Seleccione el tipo de movimiento", ["Ingreso", "Gasto"])
-    valor = st.number_input("Ingrese el valor", min_value=0.0, value=0.0, step=10.0)
+    concepto = st.text_input(
+        "Ingrese el concepto del movimiento"
+    )
+
+    tipo = st.selectbox(
+        "Seleccione el tipo de movimiento",
+        ["Ingreso", "Gasto"]
+    )
+
+    valor = st.number_input(
+        "Ingrese el valor",
+        min_value=0.0,
+        value=0.0,
+        step=10.0
+    )
 
     if "movimientos" not in st.session_state:
         st.session_state.movimientos = []
 
     if st.button("Registrar movimiento"):
+
         if concepto != "" and valor > 0:
-            movimiento = {"concepto": concepto, "tipo": tipo, "valor": valor}
-            st.session_state.movimientos.append(movimiento)
-            st.success("Movimiento registrado correctamente")
+
+            movimiento = {
+                "Concepto": concepto,
+                "Tipo": tipo,
+                "Valor": valor
+            }
+
+            st.session_state.movimientos.append(
+                movimiento
+            )
+
+            st.success(
+                "Movimiento registrado correctamente."
+            )
+
         else:
-            st.error("Ingrese un concepto válido y un valor mayor que 0.")
+
+            st.error(
+                "Ingrese un concepto válido y un valor mayor que 0."
+            )
 
     st.markdown("---")
+
     st.subheader("Movimientos registrados")
 
     if len(st.session_state.movimientos) > 0:
-        col1, col2, col3, col4 = st.columns([3, 2, 2, 1])
+
+        col1, col2, col3, col4 = st.columns(
+            [3, 2, 2, 1]
+        )
+
         col1.markdown("**Concepto**")
         col2.markdown("**Tipo**")
         col3.markdown("**Valor**")
         col4.markdown("**Eliminar**")
 
-        for i, movimiento in enumerate(st.session_state.movimientos):
-            col1, col2, col3, col4 = st.columns([3, 2, 2, 1])
-            col1.write(movimiento["concepto"])
-            col2.write(movimiento["tipo"])
-            col3.write(f"S/ {movimiento['valor']:,.2f}")
+        for i, movimiento in enumerate(
+            st.session_state.movimientos
+        ):
 
-            if col4.button("🗑️", key=f"eliminar_{i}"):
+            col1, col2, col3, col4 = st.columns(
+                [3, 2, 2, 1]
+            )
+
+            col1.write(
+                movimiento["Concepto"]
+            )
+
+            col2.write(
+                movimiento["Tipo"]
+            )
+
+            col3.write(
+                f"S/ {movimiento['Valor']:,.2f}"
+            )
+
+            if col4.button(
+                "🗑️",
+                key=f"eliminar_movimiento_{i}"
+            ):
+
                 st.session_state.movimientos.pop(i)
+
                 st.rerun()
 
-        total_ingresos = sum(m["valor"] for m in st.session_state.movimientos if m["tipo"] == "Ingreso")
-        total_gastos = sum(m["valor"] for m in st.session_state.movimientos if m["tipo"] == "Gasto")
-        saldo_final = total_ingresos - total_gastos
+        total_ingresos = sum(
+            movimiento["Valor"]
+            for movimiento in st.session_state.movimientos
+            if movimiento["Tipo"] == "Ingreso"
+        )
+
+        total_gastos = sum(
+            movimiento["Valor"]
+            for movimiento in st.session_state.movimientos
+            if movimiento["Tipo"] == "Gasto"
+        )
+
+        saldo_final = (
+            total_ingresos - total_gastos
+        )
 
         st.markdown("---")
-        st.subheader("Resumen del flujo de caja")
+
+        st.subheader(
+            "Resumen del flujo de caja"
+        )
+
         col_m1, col_m2, col_m3 = st.columns(3)
-        col_m1.metric("Total de ingresos", f"S/ {total_ingresos:,.2f}")
-        col_m2.metric("Total de gastos", f"S/ {total_gastos:,.2f}")
-        col_m3.metric("Saldo final", f"S/ {saldo_final:,.2f}")
+
+        col_m1.metric(
+            "Total de ingresos",
+            f"S/ {total_ingresos:,.2f}"
+        )
+
+        col_m2.metric(
+            "Total de gastos",
+            f"S/ {total_gastos:,.2f}"
+        )
+
+        col_m3.metric(
+            "Saldo final",
+            f"S/ {saldo_final:,.2f}"
+        )
 
         if saldo_final > 0:
-            st.success("Flujo de caja: A FAVOR 📈")
+
+            st.success(
+                "Flujo de caja: A FAVOR 📈"
+            )
+
         elif saldo_final < 0:
-            st.error("Flujo de caja: EN CONTRA 📉")
+
+            st.error(
+                "Flujo de caja: EN CONTRA 📉"
+            )
+
         else:
-            st.info("Flujo de caja: EN EQUILIBRIO ⚖️")
 
-        st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("Borrar todos los movimientos"):
+            st.info(
+                "Flujo de caja: EN EQUILIBRIO ⚖️"
+            )
+
+        st.markdown("---")
+
+        if st.button(
+            "Borrar todos los movimientos"
+        ):
+
             st.session_state.movimientos = []
-            st.rerun()
-    else:
-        st.info("No hay movimientos registrados actualmente.")
 
+            st.rerun()
+
+    else:
+
+        st.write(
+            "No hay movimientos registrados."
+        )
 # ==========================================
-# SECCIÓN: EJERCICIO 2 (Registro de productos)
+# EJERCICIO 2 - REGISTRO DE PRODUCTOS
 # ==========================================
+
 elif modulos == "Ejercicio 2":
+
     st.sidebar.markdown("---")
-    st.sidebar.image("image_ejercicio2.jpg", use_container_width=True)
-    
+    st.sidebar.image(
+        "image_ejercicio2.jpg",
+        use_container_width=True
+    )
+
     st.markdown("""
         <div class="custom-data-title">
             <h1>📦 Formulario de registro de productos</h1>
@@ -392,73 +433,177 @@ elif modulos == "Ejercicio 2":
 
     st.markdown("""
     ### Descripción del ejercicio
-    Formulario optimizado para registrar productos utilizando **arreglos de NumPy**, calculando totales automáticos.
+
+    En este ejercicio se desarrolla un formulario para registrar productos
+    utilizando **arreglos de NumPy**.
+
+    El total se calcula automáticamente multiplicando el precio por
+    la cantidad.
     """)
 
     st.markdown("---")
+
     st.subheader("Registrar producto")
 
-    nombre = st.text_input("Ingrese el nombre del producto")
-    categoria = st.selectbox("Seleccione la categoría", ["Limpieza", "Tecnología", "Alimentos", "Bebidas", "Otros"])
-    precio = st.number_input("Ingrese el precio", min_value=0.0, value=0.0, step=1.0)
-    cantidad = st.number_input("Ingrese la cantidad", min_value=1, value=1, step=1)
+    nombre = st.text_input(
+        "Ingrese el nombre del producto"
+    )
+
+    categoria = st.selectbox(
+        "Seleccione la categoría",
+        [
+            "Limpieza",
+            "Tecnología",
+            "Alimentos",
+            "Bebidas",
+            "Otros"
+        ]
+    )
+
+    precio = st.number_input(
+        "Ingrese el precio",
+        min_value=0.0,
+        value=0.0,
+        step=1.0
+    )
+
+    cantidad = st.number_input(
+        "Ingrese la cantidad",
+        min_value=1,
+        value=1,
+        step=1
+    )
 
     if "productos" not in st.session_state:
-        st.session_state.productos = np.empty((0, 5), dtype=object)
+
+        st.session_state.productos = np.empty(
+            (0, 5),
+            dtype=object
+        )
 
     if st.button("Registrar producto"):
-        if nombre != "" and precio > 0 and cantidad > 0:
+
+        if nombre != "" and precio > 0:
+
             total = precio * cantidad
-            nuevo_producto = np.array([[nombre, categoria, precio, cantidad, total]], dtype=object)
-            st.session_state.productos = np.vstack([st.session_state.productos, nuevo_producto])
-            st.success("Producto registrado correctamente")
+
+            nuevo_producto = np.array(
+                [[
+                    nombre,
+                    categoria,
+                    precio,
+                    cantidad,
+                    total
+                ]],
+                dtype=object
+            )
+
+            st.session_state.productos = np.vstack(
+                [
+                    st.session_state.productos,
+                    nuevo_producto
+                ]
+            )
+
+            st.success(
+                "Producto registrado correctamente."
+            )
+
         else:
-            st.error("Ingrese un nombre válido y un valor mayor que 0.")
+
+            st.error(
+                "Ingrese un nombre válido y un precio mayor que 0."
+            )
 
     st.markdown("---")
+
     st.subheader("Productos registrados")
 
     if len(st.session_state.productos) > 0:
+
         st.dataframe(
             st.session_state.productos,
             column_config={
-                1: "Nombre",
-                2: "Categoría",
-                3: st.column_config.NumberColumn("Precio", format="S/ %.2f"),
-                4: "Cantidad",
-                5: st.column_config.NumberColumn("Total", format="S/ %.2f")
+                0: "Nombre",
+                1: "Categoría",
+                2: st.column_config.NumberColumn(
+                    "Precio",
+                    format="S/ %.2f"
+                ),
+                3: "Cantidad",
+                4: st.column_config.NumberColumn(
+                    "Total",
+                    format="S/ %.2f"
+                )
             },
             hide_index=True,
             use_container_width=True
         )
 
         st.markdown("---")
-        st.subheader("Gestión de inventario")
-        nombres_productos = [p[0] for p in st.session_state.productos]
-        producto_seleccionado = st.selectbox("Seleccione el producto que desea eliminar", nombres_productos)
+
+        st.subheader("Eliminar producto")
+
+        nombres_productos = [
+            producto[0]
+            for producto in st.session_state.productos
+        ]
+
+        producto_seleccionado = st.selectbox(
+            "Seleccione el producto que desea eliminar",
+            nombres_productos
+        )
 
         col_elim1, col_elim2 = st.columns(2)
-        with col_elim1:
-            if st.button("Eliminar producto seleccionado"):
-                indice = nombres_productos.index(producto_seleccionado)
-                st.session_state.productos = np.delete(st.session_state.productos, indice, axis=0)
-                st.success("Producto eliminado correctamente")
-                st.rerun()
-        with col_elim2:
-            if st.button("Borrar todo el inventario"):
-                st.session_state.productos = np.empty((0, 5), dtype=object)
-                st.success("Todos los productos fueron eliminados.")
-                st.rerun()
-    else:
-        st.info("No hay productos registrados en el sistema.")
 
+        with col_elim1:
+
+            if st.button(
+                "Eliminar producto seleccionado"
+            ):
+
+                indice = nombres_productos.index(
+                    producto_seleccionado
+                )
+
+                st.session_state.productos = np.delete(
+                    st.session_state.productos,
+                    indice,
+                    axis=0
+                )
+
+                st.rerun()
+
+        with col_elim2:
+
+            if st.button(
+                "Borrar todo el inventario"
+            ):
+
+                st.session_state.productos = np.empty(
+                    (0, 5),
+                    dtype=object
+                )
+
+                st.rerun()
+
+    else:
+
+        st.write(
+            "No hay productos registrados."
+        )
 # ==========================================
-# SECCIÓN: EJERCICIO 3 (Tasa de error)
+# EJERCICIO 3 - TASA DE ERROR
 # ==========================================
+
 elif modulos == "Ejercicio 3":
+
     st.sidebar.markdown("---")
-    st.sidebar.image("image_ejercicio3.jpg", use_container_width=True)
-    
+    st.sidebar.image(
+        "image_ejercicio3.jpg",
+        use_container_width=True
+    )
+
     st.markdown("""
         <div class="custom-data-title">
             <h1>📊 Cálculo de tasa de error de transacciones</h1>
@@ -468,127 +613,356 @@ elif modulos == "Ejercicio 3":
 
     st.markdown("""
     ### Descripción del ejercicio
-    Análisis de transacciones mediante funciones externas para calcular tasas de error y éxito de manera automatizada.
+
+    En este ejercicio se utilizará una función desde una librería externa
+    para calcular la **tasa de error** y la **tasa de éxito** de un conjunto
+    de transacciones.
+
+    La función recibe como parámetros el número de transacciones fallidas
+    y el número de transacciones totales.
     """)
 
     st.markdown("---")
-    st.subheader("Parámetros de Análisis")
 
-    nombre_analisis = st.text_input("Ingrese periodo del análisis")
-    transacciones_fallidas = st.number_input("Número de transacciones fallidas", min_value=0, value=0, step=1)
-    transacciones_totales = st.number_input("Número de transacciones totales", min_value=1, value=1, step=1)
+    st.subheader("Seleccionar función")
 
-    if st.button("Ejecutar análisis"):
-        if nombre_analisis == "":
-            st.warning("Por favor ingrese el periodo del análisis.")
-        else:
-            try:
-                resultado = lf.calcular_tasa_error_transacciones(transacciones_fallidas, transacciones_totales)
-                st.success("Función ejecutada correctamente.")
+    funcion = st.selectbox(
+        "Seleccione la función que desea ejecutar",
+        [
+            "Calcular tasa de error de transacciones"
+        ]
+    )
 
-                st.markdown("---")
-                st.subheader(f"Resultado: {nombre_analisis}")
-                
-                col_r1, col_r2 = st.columns(2)
-                col_r1.metric("Tasa de Error", f"{resultado['tasa_error_pct']:.4f}%")
-                col_r2.metric("Tasa de Éxito", f"{resultado['tasa_exito_pct']:.4f}%")
+    if funcion == "Calcular tasa de error de transacciones":
 
-                if "historico_tasa_error" not in st.session_state:
-                    st.session_state.historico_tasa_error = []
+        st.subheader("Ingresar parámetros")
 
-                registro = {
-                    "Análisis": nombre_analisis,
-                    "Transacciones fallidas": transacciones_fallidas,
-                    "Transacciones totales": transacciones_totales,
-                    "Tasa de error (%)": resultado["tasa_error_pct"],
-                    "Tasa de éxito (%)": resultado["tasa_exito_pct"]
-                }
-                st.session_state.historico_tasa_error.append(registro)
+        periodo = st.text_input(
+            "Ingrese el periodo del análisis"
+        )
 
-            except ValueError as e:
-                st.error(str(e))
+        transacciones_fallidas = st.number_input(
+            "Número de transacciones fallidas",
+            min_value=0,
+            value=0,
+            step=1
+        )
+
+        transacciones_totales = st.number_input(
+            "Número de transacciones totales",
+            min_value=1,
+            value=1,
+            step=1
+        )
+
+        if st.button("Ejecutar función"):
+
+            if periodo == "":
+
+                st.write(
+                    "Debe ingresar el periodo del análisis."
+                )
+
+            else:
+
+                try:
+
+                    resultado = (
+                        lf.calcular_tasa_error_transacciones(
+                            transacciones_fallidas,
+                            transacciones_totales
+                        )
+                    )
+
+                    st.write(
+                        "Función ejecutada correctamente."
+                    )
+
+                    st.subheader(
+                        f"Resultado - {periodo}"
+                    )
+
+                    st.write(
+                        f"Tasa de error: "
+                        f"{resultado['tasa_error_pct']:.4f}%"
+                    )
+
+                    st.write(
+                        f"Tasa de éxito: "
+                        f"{resultado['tasa_exito_pct']:.4f}%"
+                    )
+
+                    if "historico_tasa_error" not in st.session_state:
+
+                        st.session_state.historico_tasa_error = []
+
+                    registro = {
+                        "Periodo": periodo,
+                        "Transacciones fallidas": transacciones_fallidas,
+                        "Transacciones totales": transacciones_totales,
+                        "Tasa de error (%)": resultado[
+                            "tasa_error_pct"
+                        ],
+                        "Tasa de éxito (%)": resultado[
+                            "tasa_exito_pct"
+                        ]
+                    }
+
+                    st.session_state.historico_tasa_error.append(
+                        registro
+                    )
+
+                except ValueError as e:
+
+                    st.write(str(e))
 
     st.markdown("---")
+
     st.subheader("Histórico de resultados")
-    if "historico_tasa_error" in st.session_state and len(st.session_state.historico_tasa_error) > 0:
-        st.dataframe(st.session_state.historico_tasa_error, use_container_width=True)
-        if st.button("Limpiar histórico"):
+
+    if (
+        "historico_tasa_error" in st.session_state
+        and len(
+            st.session_state.historico_tasa_error
+        ) > 0
+    ):
+
+        st.dataframe(
+            st.session_state.historico_tasa_error,
+            use_container_width=True
+        )
+
+        if st.button(
+            "Eliminar todos los registros"
+        ):
+
             st.session_state.historico_tasa_error = []
+
             st.rerun()
+
     else:
-        st.info("No hay resultados históricos registrados.")
+
+        st.write(
+            "No hay resultados registrados."
+        )
+
 
 # ==========================================
-# SECCIÓN: EJERCICIO 4 (Gestión de pacientes)
+# EJERCICIO 4 - GESTIÓN DE PACIENTES
 # ==========================================
+
 elif modulos == "Ejercicio 4":
+
     st.sidebar.markdown("---")
-    st.sidebar.image("image_ejercicio4.jpg", use_container_width=True)
-    
+    st.sidebar.image(
+        "image_ejercicio4.jpg",
+        use_container_width=True
+    )
+
     st.markdown("""
         <div class="custom-data-title">
-            <h1>🏥 Gestión de pacientes (CRUD)</h1>
-            <p>Módulo de Programación Orientada a Objetos - Control Clínico</p>
+            <h1>🏥 Gestión de pacientes</h1>
+            <p>Módulo de Programación Orientada a Objetos - CRUD</p>
         </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
     ### Descripción del ejercicio
-    Sistema orientado a objetos utilizando la clase **Paciente** para control clínico, cálculo de IMC y superficie corporal.
+
+    En este ejercicio se utilizará la clase **Paciente**, almacenada
+    en la librería externa `libreria_clases_proyecto1.py`.
+
+    La aplicación implementa las operaciones básicas de un CRUD:
+
+    - **Crear** registros.
+    - **Leer** y visualizar registros.
+    - **Actualizar** información.
+    - **Eliminar** registros.
+
+    La clase permite calcular el IMC, su clasificación y la superficie
+    corporal.
     """)
 
     if "pacientes" not in st.session_state:
+
         st.session_state.pacientes = []
 
     st.markdown("---")
-    st.subheader("➕ Crear nuevo registro médico")
 
-    nombre_p = st.text_input("Ingrese el nombre del paciente")
-    peso_p = st.number_input("Ingrese el peso en kg", min_value=0.1, value=60.0, step=0.1)
-    altura_p = st.number_input("Ingrese la altura en metros", min_value=0.1, value=1.60, step=0.01)
+    st.subheader("Seleccionar clase")
 
-    if st.button("Registrar paciente"):
-        try:
-            paciente = lc.Paciente(nombre_p, peso_p, altura_p)
-            st.session_state.pacientes.append(paciente)
-            st.success("Paciente registrado correctamente.")
-        except ValueError as e:
-            st.error(str(e))
+    clase = st.selectbox(
+        "Seleccione la clase que desea utilizar",
+        ["Paciente"]
+    )
 
-    st.markdown("---")
-    st.subheader("📋 Registros de pacientes")
-    if len(st.session_state.pacientes) > 0:
-        registros = [p.resumen() for p in st.session_state.pacientes]
-        st.dataframe(registros, use_container_width=True)
+    if clase == "Paciente":
+
+        # ======================================
+        # CREAR
+        # ======================================
+
+        st.subheader("Crear registro")
+
+        nombre_p = st.text_input(
+            "Ingrese el nombre del paciente"
+        )
+
+        peso_p = st.number_input(
+            "Ingrese el peso en kg",
+            min_value=0.1,
+            value=60.0,
+            step=0.1
+        )
+
+        altura_p = st.number_input(
+            "Ingrese la altura en metros",
+            min_value=0.1,
+            value=1.60,
+            step=0.01
+        )
+
+        if st.button("Crear paciente"):
+
+            if nombre_p == "":
+
+                st.write(
+                    "Debe ingresar el nombre del paciente."
+                )
+
+            else:
+
+                try:
+
+                    paciente = lc.Paciente(
+                        nombre_p,
+                        peso_p,
+                        altura_p
+                    )
+
+                    st.session_state.pacientes.append(
+                        paciente
+                    )
+
+                    st.write(
+                        "Paciente registrado correctamente."
+                    )
+
+                except ValueError as e:
+
+                    st.write(str(e))
+
+        # ======================================
+        # LEER
+        # ======================================
 
         st.markdown("---")
-        col_act, col_elm = st.columns(2)
 
-        with col_act:
-            st.subheader("✏️ Actualizar datos")
-            nombres = [p.nombre for p in st.session_state.pacientes]
-            paciente_actualizar = st.selectbox("Seleccione paciente a actualizar", nombres, key="sel_act")
-            nuevo_peso = st.number_input("Nuevo peso en kg", min_value=0.1, value=60.0, step=0.1, key="n_peso")
-            nueva_altura = st.number_input("Nueva altura en metros", min_value=0.1, value=1.60, step=0.01, key="n_alt")
+        st.subheader("Registros de pacientes")
 
-            if st.button("Actualizar paciente"):
-                indice = nombres.index(paciente_actualizar)
-                p_obj = st.session_state.pacientes[indice]
-                p_obj.peso_kg = nuevo_peso
-                p_obj.altura_m = nueva_altura
-                st.success("Paciente actualizado correctamente.")
+        if len(st.session_state.pacientes) > 0:
+
+            registros = []
+
+            for paciente in st.session_state.pacientes:
+
+                registros.append(
+                    paciente.resumen()
+                )
+
+            st.dataframe(
+                registros,
+                use_container_width=True,
+                hide_index=True
+            )
+
+        else:
+
+            st.write(
+                "No hay pacientes registrados."
+            )
+
+        # ======================================
+        # ACTUALIZAR
+        # ======================================
+
+        if len(st.session_state.pacientes) > 0:
+
+            st.markdown("---")
+
+            st.subheader("Actualizar paciente")
+
+            nombres = [
+                paciente.nombre
+                for paciente in st.session_state.pacientes
+            ]
+
+            paciente_actualizar = st.selectbox(
+                "Seleccione el paciente que desea actualizar",
+                nombres,
+                key="paciente_actualizar"
+            )
+
+            nuevo_peso = st.number_input(
+                "Nuevo peso en kg",
+                min_value=0.1,
+                value=60.0,
+                step=0.1,
+                key="nuevo_peso"
+            )
+
+            nueva_altura = st.number_input(
+                "Nueva altura en metros",
+                min_value=0.1,
+                value=1.60,
+                step=0.01,
+                key="nueva_altura"
+            )
+
+            if st.button(
+                "Actualizar paciente"
+            ):
+
+                indice = nombres.index(
+                    paciente_actualizar
+                )
+
+                paciente = (
+                    st.session_state.pacientes[indice]
+                )
+
+                paciente.peso_kg = nuevo_peso
+                paciente.altura_m = nueva_altura
+
                 st.rerun()
 
-        with col_elm:
-            st.subheader("🗑️ Eliminar registro")
-            paciente_eliminar = st.selectbox("Seleccione paciente a eliminar", nombres, key="sel_elm")
-            if st.button("Eliminar paciente"):
-                indice = nombres.index(paciente_eliminar)
-                st.session_state.pacientes.pop(indice)
-                st.success("Paciente eliminado correctamente.")
+            # ======================================
+            # ELIMINAR
+            # ======================================
+
+            st.markdown("---")
+
+            st.subheader("Eliminar paciente")
+
+            paciente_eliminar = st.selectbox(
+                "Seleccione el paciente que desea eliminar",
+                nombres,
+                key="paciente_eliminar"
+            )
+
+            if st.button(
+                "Eliminar paciente"
+            ):
+
+                indice = nombres.index(
+                    paciente_eliminar
+                )
+
+                st.session_state.pacientes.pop(
+                    indice
+                )
+
                 st.rerun()
-    else:
-        st.info("No hay pacientes registrados en la base de datos temporal.")
 
 
 
