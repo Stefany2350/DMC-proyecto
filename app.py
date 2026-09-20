@@ -379,11 +379,12 @@ if modulos == "Home":
     col1, col2 = st.columns(2)
 
     with col1:
+        st.markdown("<br><br>", unsafe_allow_html=True)
         st.image("Python_logo.png", width=220)
 
     with col2:
+        st.markdown("<br><br>", unsafe_allow_html=True)
         st.image("GitHub.png", width=220)
-
 
     col3, col4 = st.columns(2)
 
