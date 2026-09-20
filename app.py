@@ -2,9 +2,11 @@ import streamlit as st
 import numpy as np
 import libreria_funciones_proyecto1 as lf
 import librería_clases_proyecto1 as lc
+
 # ==========================================
 # CONFIGURACIÓN DE LA PÁGINA
 # ==========================================
+
 st.set_page_config(
     page_title="Gestión y Análisis de Datos - Python Fundamentals",
     page_icon="⚡",
@@ -19,11 +21,20 @@ st.set_page_config(
 st.markdown("""
     <style>
 
+    /* ==========================================
+       FONDO GENERAL
+       ========================================== */
+
     .stApp {
         background-color: #1E293B;
         color: #F8FAFC;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+
+
+    /* ==========================================
+       BARRA LATERAL
+       ========================================== */
 
     [data-testid="stSidebar"] {
         background-color: #334155;
@@ -36,6 +47,11 @@ st.markdown("""
         color: #38BDF8;
     }
 
+
+    /* ==========================================
+       TÍTULO DEL PANEL DE NAVEGACIÓN
+       ========================================== */
+
     .sidebar-custom-title {
         background: linear-gradient(
             135deg,
@@ -45,141 +61,131 @@ st.markdown("""
 
         border: 1px solid #475569 !important;
         border-left: 5px solid #38BDF8 !important;
+
         padding: 16px 20px !important;
+
         border-radius: 10px !important;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+
+        box-shadow:
+            0 4px 15px rgba(0, 0, 0, 0.3) !important;
+
         position: relative !important;
         overflow: hidden !important;
+
         margin-bottom: 20px !important;
     }
 
     .sidebar-custom-title h2 {
         color: #F8FAFC !important;
+
         font-size: 1.25rem !important;
+
         font-weight: 700 !important;
+
         margin: 0 !important;
     }
 
-/* ==========================================
-   TÍTULO PRINCIPAL CON EFECTO HOVER
-   ========================================== */
 
-.custom-data-title {
-    background: linear-gradient(
-        135deg,
-        #0F172A 0%,
-        #1E293B 50%,
-        #0F172A 100%
-    ) !important;
+    /* ==========================================
+       TÍTULOS PRINCIPALES
+       ========================================== */
 
-    background-size: 200% 200% !important;
+    .custom-data-title {
 
-    border: 1px solid #475569 !important;
-    border-left: 6px solid #38BDF8 !important;
+        background: linear-gradient(
+            135deg,
+            #0F172A 0%,
+            #1D4ED8 35%,
+            #2563EB 55%,
+            #38BDF8 75%,
+            #0F172A 100%
+        ) !important;
 
-    padding: 24px 30px !important;
-    border-radius: 14px !important;
+        background-size: 250% 250% !important;
 
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.5) !important;
+        border: 1px solid #475569 !important;
 
-    margin-bottom: 30px !important;
+        border-left: 6px solid #38BDF8 !important;
 
-    position: relative !important;
-    overflow: hidden !important;
+        padding: 24px 30px !important;
 
-    transition:
-        all 0.4s ease-in-out !important;
-}
+        border-radius: 14px !important;
 
+        box-shadow:
+            0 10px 30px rgba(0, 0, 0, 0.5),
+            0 0 20px rgba(37, 99, 235, 0.15) !important;
 
-/* Gradiente que aparece al pasar el cursor */
+        margin-bottom: 30px !important;
 
-.custom-data-title:hover {
+        position: relative !important;
 
-    background: linear-gradient(
-        135deg,
-        #0F172A 0%,
-        #1D4ED8 35%,
-        #38BDF8 70%,
-        #0F172A 100%
-    ) !important;
+        overflow: hidden !important;
 
-    background-size: 250% 250% !important;
-
-    border-color: #38BDF8 !important;
-
-    box-shadow:
-        0 0 25px rgba(56, 189, 248, 0.35),
-        0 0 50px rgba(37, 99, 235, 0.20) !important;
-
-    transform: translateY(-3px) !important;
-
-    animation: tituloGradient 4s ease infinite !important;
-}
-
-
-/* Animación del gradiente */
-
-@keyframes tituloGradient {
-
-    0% {
-        background-position: 0% 50%;
+        animation:
+            tituloGradient 6s ease infinite !important;
     }
 
-    50% {
-        background-position: 100% 50%;
+
+    /* ==========================================
+       ANIMACIÓN DEL GRADIENTE
+       ========================================== */
+
+    @keyframes tituloGradient {
+
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+
     }
 
-    100% {
-        background-position: 0% 50%;
-    }
 
-}
-
-
-/* Título */
-
-.custom-data-title h1 {
-
-    color: #F8FAFC !important;
-
-    font-size: 2.1rem !important;
-
-    font-weight: 700 !important;
-
-    margin: 0 !important;
-
-    position: relative !important;
-    z-index: 2 !important;
-
-    transition: all 0.3s ease !important;
-}
-
-
-/* El texto también reacciona al pasar el cursor */
-
-.custom-data-title:hover h1 {
-
-    text-shadow:
-        0 0 10px rgba(56, 189, 248, 0.45);
-
-}
+    /* ==========================================
+       TEXTO DE LOS TÍTULOS
+       ========================================== */
 
     .custom-data-title h1 {
+
         color: #F8FAFC !important;
+
         font-size: 2.1rem !important;
+
         font-weight: 700 !important;
+
         margin: 0 !important;
+
+        position: relative !important;
+
+        z-index: 2 !important;
+
+        text-shadow:
+            0 2px 8px rgba(0, 0, 0, 0.35) !important;
     }
 
+
     .custom-data-title p {
-        color: #94A3B8 !important;
+
+        color: #E2E8F0 !important;
+
         font-size: 0.95rem !important;
+
         margin: 6px 0 0 0 !important;
     }
 
+
+    /* ==========================================
+       BOTONES
+       ========================================== */
+
     .stButton > button {
+
         background: linear-gradient(
             135deg,
             #2563EB 0%,
@@ -187,58 +193,102 @@ st.markdown("""
         );
 
         color: white;
+
         border: none;
+
         border-radius: 8px;
+
         padding: 0.6rem 1.2rem;
+
         font-weight: 600;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+
+        box-shadow:
+            0 4px 12px rgba(37, 99, 235, 0.3);
+
         transition: all 0.3s ease;
     }
 
+
     .stButton > button:hover {
+
         background: linear-gradient(
             135deg,
             #3B82F6 0%,
             #2563EB 100%
         );
 
-        box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+        box-shadow:
+            0 0 20px rgba(59, 130, 246, 0.6);
+
         transform: translateY(-2px);
     }
+
+
+    /* ==========================================
+       CAMPOS DE ENTRADA
+       ========================================== */
 
     .stTextInput input,
     .stSelectbox select,
     .stNumberInput input {
+
         background-color: #0F172A !important;
+
         color: #F8FAFC !important;
+
         border: 1px solid #475569 !important;
+
         border-radius: 8px !important;
     }
 
+
+    /* ==========================================
+       MÉTRICAS
+       ========================================== */
+
     [data-testid="stMetric"] {
+
         background-color: #0F172A;
+
         padding: 15px;
+
         border-radius: 12px;
+
         border: 1px solid #475569;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+
+        box-shadow:
+            0 4px 6px -1px rgba(0, 0, 0, 0.2);
     }
 
+
     [data-testid="stMetricLabel"] {
+
         color: #94A3B8 !important;
     }
 
+
     [data-testid="stMetricValue"] {
+
         color: #38BDF8 !important;
     }
 
+
+    /* ==========================================
+       TABLAS
+       ========================================== */
+
     [data-testid="stDataFrame"] {
+
         border-radius: 10px;
+
         overflow: hidden;
+
         border: 1px solid #475569;
     }
 
     </style>
 """, unsafe_allow_html=True)
+
 
 # ==========================================
 # BARRA LATERAL
@@ -261,6 +311,8 @@ modulos = st.sidebar.selectbox(
         "Ejercicio 4"
     ]
 )
+
+
 # ==========================================
 # HOME
 # ==========================================
@@ -268,6 +320,7 @@ modulos = st.sidebar.selectbox(
 if modulos == "Home":
 
     st.sidebar.markdown("---")
+
     st.sidebar.image(
         "image_home.png",
         use_container_width=True
@@ -275,8 +328,10 @@ if modulos == "Home":
 
     st.markdown("""
         <div class="custom-data-title">
-            <h1> Aplicación de Python para la Gestión y Análisis de Datos</h1>
-      """, unsafe_allow_html=True)
+            <h1>Aplicación de Python para la Gestión y Análisis de Datos</h1>
+        </div>
+    """, unsafe_allow_html=True)
+
 
     col_info1, col_info2, col_info3 = st.columns(3)
 
@@ -289,7 +344,9 @@ if modulos == "Home":
     with col_info3:
         st.write("**Año:** 2026")
 
+
     st.markdown("---")
+
 
     st.markdown("""
     ### 💡 Descripción del Proyecto
@@ -307,10 +364,13 @@ if modulos == "Home":
     - **GitHub**
     """)
 
+
     st.image(
         "Python_logo.png",
         width=250
     )
+
+
 # ==========================================
 # EJERCICIO 1 - FLUJO DE CAJA
 # ==========================================
@@ -318,16 +378,19 @@ if modulos == "Home":
 elif modulos == "Ejercicio 1":
 
     st.sidebar.markdown("---")
+
     st.sidebar.image(
         "image_ejercicio1.jpg",
         use_container_width=True
     )
+
 
     st.markdown("""
         <div class="custom-data-title">
             <h1>💰 Flujo de caja con listas</h1>
         </div>
     """, unsafe_allow_html=True)
+
 
     st.markdown("""
     ### Descripción del ejercicio
@@ -339,18 +402,22 @@ elif modulos == "Ejercicio 1":
     La aplicación permite calcular los ingresos, gastos y el saldo final.
     """)
 
+
     st.markdown("---")
 
     st.subheader("Registrar movimiento")
+
 
     concepto = st.text_input(
         "Ingrese el concepto del movimiento"
     )
 
+
     tipo = st.selectbox(
         "Seleccione el tipo de movimiento",
         ["Ingreso", "Gasto"]
     )
+
 
     valor = st.number_input(
         "Ingrese el valor",
@@ -359,8 +426,10 @@ elif modulos == "Ejercicio 1":
         step=10.0
     )
 
+
     if "movimientos" not in st.session_state:
         st.session_state.movimientos = []
+
 
     if st.button("Registrar movimiento"):
 
@@ -386,9 +455,11 @@ elif modulos == "Ejercicio 1":
                 "Ingrese un concepto válido y un valor mayor que 0."
             )
 
+
     st.markdown("---")
 
     st.subheader("Movimientos registrados")
+
 
     if len(st.session_state.movimientos) > 0:
 
@@ -400,6 +471,7 @@ elif modulos == "Ejercicio 1":
         col2.markdown("**Tipo**")
         col3.markdown("**Valor**")
         col4.markdown("**Eliminar**")
+
 
         for i, movimiento in enumerate(
             st.session_state.movimientos
@@ -421,6 +493,7 @@ elif modulos == "Ejercicio 1":
                 f"S/ {movimiento['Valor']:,.2f}"
             )
 
+
             if col4.button(
                 "🗑️",
                 key=f"eliminar_movimiento_{i}"
@@ -430,11 +503,13 @@ elif modulos == "Ejercicio 1":
 
                 st.rerun()
 
+
         total_ingresos = sum(
             movimiento["Valor"]
             for movimiento in st.session_state.movimientos
             if movimiento["Tipo"] == "Ingreso"
         )
+
 
         total_gastos = sum(
             movimiento["Valor"]
@@ -442,9 +517,11 @@ elif modulos == "Ejercicio 1":
             if movimiento["Tipo"] == "Gasto"
         )
 
+
         saldo_final = (
             total_ingresos - total_gastos
         )
+
 
         st.markdown("---")
 
@@ -452,22 +529,27 @@ elif modulos == "Ejercicio 1":
             "Resumen del flujo de caja"
         )
 
+
         col_m1, col_m2, col_m3 = st.columns(3)
+
 
         col_m1.metric(
             "Total de ingresos",
             f"S/ {total_ingresos:,.2f}"
         )
 
+
         col_m2.metric(
             "Total de gastos",
             f"S/ {total_gastos:,.2f}"
         )
 
+
         col_m3.metric(
             "Saldo final",
             f"S/ {saldo_final:,.2f}"
         )
+
 
         if saldo_final > 0:
 
@@ -487,7 +569,9 @@ elif modulos == "Ejercicio 1":
                 "Flujo de caja: EN EQUILIBRIO ⚖️"
             )
 
+
         st.markdown("---")
+
 
         if st.button(
             "Borrar todos los movimientos"
@@ -497,11 +581,14 @@ elif modulos == "Ejercicio 1":
 
             st.rerun()
 
+
     else:
 
         st.write(
             "No hay movimientos registrados."
         )
+
+
 # ==========================================
 # EJERCICIO 2 - REGISTRO DE PRODUCTOS
 # ==========================================
@@ -509,16 +596,19 @@ elif modulos == "Ejercicio 1":
 elif modulos == "Ejercicio 2":
 
     st.sidebar.markdown("---")
+
     st.sidebar.image(
         "image_ejercicio2.jpg",
         use_container_width=True
     )
+
 
     st.markdown("""
         <div class="custom-data-title">
             <h1>📦 Formulario de registro de ventas</h1>
         </div>
     """, unsafe_allow_html=True)
+
 
     st.markdown("""
     ### Descripción del ejercicio
@@ -530,13 +620,16 @@ elif modulos == "Ejercicio 2":
     la cantidad.
     """)
 
+
     st.markdown("---")
 
     st.subheader("Registrar producto")
 
+
     nombre = st.text_input(
         "Ingrese el nombre del producto"
     )
+
 
     categoria = st.selectbox(
         "Seleccione la categoría",
@@ -549,12 +642,14 @@ elif modulos == "Ejercicio 2":
         ]
     )
 
+
     precio = st.number_input(
         "Ingrese el precio",
         min_value=0.0,
         value=0.0,
         step=1.0
     )
+
 
     cantidad = st.number_input(
         "Ingrese la cantidad",
@@ -563,12 +658,14 @@ elif modulos == "Ejercicio 2":
         step=1
     )
 
+
     if "productos" not in st.session_state:
 
         st.session_state.productos = np.empty(
             (0, 5),
             dtype=object
         )
+
 
     if st.button("Registrar producto"):
 
@@ -587,12 +684,14 @@ elif modulos == "Ejercicio 2":
                 dtype=object
             )
 
+
             st.session_state.productos = np.vstack(
                 [
                     st.session_state.productos,
                     nuevo_producto
                 ]
             )
+
 
             st.success(
                 "Producto registrado correctamente."
@@ -604,9 +703,11 @@ elif modulos == "Ejercicio 2":
                 "Ingrese un nombre válido y un precio mayor que 0."
             )
 
+
     st.markdown("---")
 
     st.subheader("Productos registrados")
+
 
     if len(st.session_state.productos) > 0:
 
@@ -629,21 +730,26 @@ elif modulos == "Ejercicio 2":
             use_container_width=True
         )
 
+
         st.markdown("---")
 
         st.subheader("Eliminar producto")
+
 
         nombres_productos = [
             producto[0]
             for producto in st.session_state.productos
         ]
 
+
         producto_seleccionado = st.selectbox(
             "Seleccione el producto que desea eliminar",
             nombres_productos
         )
 
+
         col_elim1, col_elim2 = st.columns(2)
+
 
         with col_elim1:
 
@@ -655,13 +761,16 @@ elif modulos == "Ejercicio 2":
                     producto_seleccionado
                 )
 
+
                 st.session_state.productos = np.delete(
                     st.session_state.productos,
                     indice,
                     axis=0
                 )
 
+
                 st.rerun()
+
 
         with col_elim2:
 
@@ -676,11 +785,14 @@ elif modulos == "Ejercicio 2":
 
                 st.rerun()
 
+
     else:
 
         st.write(
             "No hay productos registrados."
         )
+
+
 # ==========================================
 # EJERCICIO 3 - TASA DE ERROR
 # ==========================================
@@ -688,16 +800,19 @@ elif modulos == "Ejercicio 2":
 elif modulos == "Ejercicio 3":
 
     st.sidebar.markdown("---")
+
     st.sidebar.image(
         "image_ejercicio3.jpg",
         use_container_width=True
     )
+
 
     st.markdown("""
         <div class="custom-data-title">
             <h1>📊 Cálculo de tasa de error de transacciones</h1>
         </div>
     """, unsafe_allow_html=True)
+
 
     st.markdown("""
     ### Descripción del ejercicio
@@ -710,9 +825,11 @@ elif modulos == "Ejercicio 3":
     y el número de transacciones totales.
     """)
 
+
     st.markdown("---")
 
     st.subheader("Seleccionar función")
+
 
     funcion = st.selectbox(
         "Seleccione la función que desea ejecutar",
@@ -721,13 +838,16 @@ elif modulos == "Ejercicio 3":
         ]
     )
 
+
     if funcion == "Calcular tasa de error de transacciones":
 
         st.subheader("Ingresar parámetros")
 
+
         periodo = st.text_input(
             "Ingrese el periodo del análisis"
         )
+
 
         transacciones_fallidas = st.number_input(
             "Número de transacciones fallidas",
@@ -736,12 +856,14 @@ elif modulos == "Ejercicio 3":
             step=1
         )
 
+
         transacciones_totales = st.number_input(
             "Número de transacciones totales",
             min_value=1,
             value=1,
             step=1
         )
+
 
         if st.button("Ejecutar función"):
 
@@ -762,27 +884,33 @@ elif modulos == "Ejercicio 3":
                         )
                     )
 
+
                     st.write(
                         "Función ejecutada correctamente."
                     )
 
+
                     st.subheader(
                         f"Resultado - {periodo}"
                     )
+
 
                     st.write(
                         f"Tasa de error: "
                         f"{resultado['tasa_error_pct']:.4f}%"
                     )
 
+
                     st.write(
                         f"Tasa de éxito: "
                         f"{resultado['tasa_exito_pct']:.4f}%"
                     )
 
+
                     if "historico_tasa_error" not in st.session_state:
 
                         st.session_state.historico_tasa_error = []
+
 
                     registro = {
                         "Periodo": periodo,
@@ -796,17 +924,21 @@ elif modulos == "Ejercicio 3":
                         ]
                     }
 
+
                     st.session_state.historico_tasa_error.append(
                         registro
                     )
+
 
                 except ValueError as e:
 
                     st.write(str(e))
 
+
     st.markdown("---")
 
     st.subheader("Histórico de resultados")
+
 
     if (
         "historico_tasa_error" in st.session_state
@@ -820,6 +952,7 @@ elif modulos == "Ejercicio 3":
             use_container_width=True
         )
 
+
         if st.button(
             "Eliminar todos los registros"
         ):
@@ -827,6 +960,7 @@ elif modulos == "Ejercicio 3":
             st.session_state.historico_tasa_error = []
 
             st.rerun()
+
 
     else:
 
@@ -842,16 +976,19 @@ elif modulos == "Ejercicio 3":
 elif modulos == "Ejercicio 4":
 
     st.sidebar.markdown("---")
+
     st.sidebar.image(
         "image_ejercicio4.jpg",
         use_container_width=True
     )
+
 
     st.markdown("""
         <div class="custom-data-title">
             <h1>🏥 Gestión de pacientes</h1>
         </div>
     """, unsafe_allow_html=True)
+
 
     st.markdown("""
     ### Descripción del ejercicio
@@ -870,18 +1007,22 @@ elif modulos == "Ejercicio 4":
     corporal.
     """)
 
+
     if "pacientes" not in st.session_state:
 
         st.session_state.pacientes = []
+
 
     st.markdown("---")
 
     st.subheader("Seleccionar clase")
 
+
     clase = st.selectbox(
         "Seleccione la clase que desea utilizar",
         ["Paciente"]
     )
+
 
     if clase == "Paciente":
 
@@ -891,9 +1032,11 @@ elif modulos == "Ejercicio 4":
 
         st.subheader("Crear registro")
 
+
         nombre_p = st.text_input(
             "Ingrese el nombre del paciente"
         )
+
 
         peso_p = st.number_input(
             "Ingrese el peso en kg",
@@ -902,12 +1045,14 @@ elif modulos == "Ejercicio 4":
             step=0.1
         )
 
+
         altura_p = st.number_input(
             "Ingrese la altura en metros",
             min_value=0.1,
             value=1.60,
             step=0.01
         )
+
 
         if st.button("Crear paciente"):
 
@@ -927,17 +1072,21 @@ elif modulos == "Ejercicio 4":
                         altura_p
                     )
 
+
                     st.session_state.pacientes.append(
                         paciente
                     )
+
 
                     st.write(
                         "Paciente registrado correctamente."
                     )
 
+
                 except ValueError as e:
 
                     st.write(str(e))
+
 
         # ======================================
         # LEER
@@ -947,9 +1096,11 @@ elif modulos == "Ejercicio 4":
 
         st.subheader("Registros de pacientes")
 
+
         if len(st.session_state.pacientes) > 0:
 
             registros = []
+
 
             for paciente in st.session_state.pacientes:
 
@@ -957,17 +1108,20 @@ elif modulos == "Ejercicio 4":
                     paciente.resumen()
                 )
 
+
             st.dataframe(
                 registros,
                 use_container_width=True,
                 hide_index=True
             )
 
+
         else:
 
             st.write(
                 "No hay pacientes registrados."
             )
+
 
         # ======================================
         # ACTUALIZAR
@@ -979,16 +1133,19 @@ elif modulos == "Ejercicio 4":
 
             st.subheader("Actualizar paciente")
 
+
             nombres = [
                 paciente.nombre
                 for paciente in st.session_state.pacientes
             ]
+
 
             paciente_actualizar = st.selectbox(
                 "Seleccione el paciente que desea actualizar",
                 nombres,
                 key="paciente_actualizar"
             )
+
 
             nuevo_peso = st.number_input(
                 "Nuevo peso en kg",
@@ -998,6 +1155,7 @@ elif modulos == "Ejercicio 4":
                 key="nuevo_peso"
             )
 
+
             nueva_altura = st.number_input(
                 "Nueva altura en metros",
                 min_value=0.1,
@@ -1005,6 +1163,7 @@ elif modulos == "Ejercicio 4":
                 step=0.01,
                 key="nueva_altura"
             )
+
 
             if st.button(
                 "Actualizar paciente"
@@ -1014,14 +1173,18 @@ elif modulos == "Ejercicio 4":
                     paciente_actualizar
                 )
 
+
                 paciente = (
                     st.session_state.pacientes[indice]
                 )
 
+
                 paciente.peso_kg = nuevo_peso
                 paciente.altura_m = nueva_altura
 
+
                 st.rerun()
+
 
             # ======================================
             # ELIMINAR
@@ -1031,11 +1194,13 @@ elif modulos == "Ejercicio 4":
 
             st.subheader("Eliminar paciente")
 
+
             paciente_eliminar = st.selectbox(
                 "Seleccione el paciente que desea eliminar",
                 nombres,
                 key="paciente_eliminar"
             )
+
 
             if st.button(
                 "Eliminar paciente"
@@ -1045,9 +1210,11 @@ elif modulos == "Ejercicio 4":
                     paciente_eliminar
                 )
 
+
                 st.session_state.pacientes.pop(
                     indice
                 )
+
 
                 st.rerun()
 
