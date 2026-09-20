@@ -13,69 +13,61 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Inyección de Estilos CSS Avanzados con Gradiente Interactivo Animado al Hover (Títulos Principales y Sidebar)
+# Inyección de Estilos CSS Avanzados (Paleta Slate Soft + Gradientes Interactivos IA Glow)
 st.markdown("""
     <style>
-    /* Paleta de colores empresarial y fondo general */
+    /* --------------------------------------------------------
+       PALETA SLATE SOFT & CONTENEDORES PRINCIPALES
+       -------------------------------------------------------- */
     .stApp {
-        background-color: #0B0F19;
+        background-color: #1E293B; /* Slate 800: Fondo general más suave y moderno */
         color: #F8FAFC;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     
-    /* Estilo del Sidebar (Panel de Navegación) */
+    /* Estilo del Sidebar (Panel de Navegación) en Slate 700 */
     [data-testid="stSidebar"] {
-        background-color: #111827;
-        border-right: 1px solid #1F2937;
+        background-color: #334155;
+        border-right: 1px solid #475569;
     }
     
-    /* Animación fluida de gradiente dinámico */
-    @keyframes gradientShift {
-        0% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        }
+    [data-testid="stSidebar"] .stMarkdown h1, 
+    [data-testid="stSidebar"] .stMarkdown h2, 
+    [data-testid="stSidebar"] .stMarkdown h3 {
+        color: #38BDF8;
     }
 
-    /* ========================================================
-        TÍTULO DEL SIDEBAR (PANEL DE NAVEGACIÓN INTERACTIVO)
-        ======================================================== */
+    /* --------------------------------------------------------
+       TÍTULO DEL SIDEBAR CON GRADIENTE ANIMADO E IA GLOW
+       -------------------------------------------------------- */
     .sidebar-custom-title {
         background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%) !important;
-        border: 1px solid #334155 !important;
+        border: 1px solid #475569 !important;
         border-left: 5px solid #38BDF8 !important;
-        padding: 14px 18px !important;
+        padding: 16px 20px !important;
         border-radius: 10px !important;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
         position: relative !important;
         overflow: hidden !important;
-        margin-bottom: 15px !important;
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        margin-bottom: 20px !important;
+        transition: all 0.4s ease !important;
     }
 
-    /* Patrón de puntos para la sidebar */
     .sidebar-custom-title::before {
         content: "" !important;
         position: absolute !important;
-        top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important;
-        background-image: radial-gradient(circle, rgba(56, 189, 248, 0.15) 1.2px, transparent 1.2px) !important;
+        top: 0; right: 0; bottom: 0; left: 0;
+        background-image: radial-gradient(circle, rgba(56, 189, 248, 0.15) 1.5px, transparent 1.5px) !important;
         background-size: 14px 14px !important;
         opacity: 0.6 !important;
         pointer-events: none !important;
     }
 
-    /* Gradiente animado al pasar el cursor en la sidebar */
     .sidebar-custom-title::after {
         content: "" !important;
         position: absolute !important;
-        top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important;
-        background: linear-gradient(120deg, rgba(37, 99, 235, 0.4), rgba(56, 189, 248, 0.3), rgba(124, 58, 237, 0.35)) !important;
-        background-size: 200% 200% !important;
+        top: 0; right: 0; bottom: 0; left: 0;
+        background: linear-gradient(135deg, rgba(37, 99, 235, 0.3) 0%, rgba(56, 189, 248, 0.3) 100%) !important;
         opacity: 0 !important;
         transition: opacity 0.4s ease-in-out !important;
         pointer-events: none !important;
@@ -90,12 +82,11 @@ st.markdown("""
     .sidebar-custom-title:hover {
         transform: translateY(-2px) !important;
         border-color: #38BDF8 !important;
-        box-shadow: 0 0 25px rgba(56, 189, 248, 0.4), inset 0 0 12px rgba(56, 189, 248, 0.2) !important;
+        box-shadow: 0 0 25px rgba(56, 189, 248, 0.4) !important;
     }
 
     .sidebar-custom-title:hover::after {
         opacity: 1 !important;
-        animation: gradientShift 4s ease infinite !important;
     }
 
     .sidebar-custom-title h2 {
@@ -103,18 +94,21 @@ st.markdown("""
         font-size: 1.25rem !important;
         font-weight: 700 !important;
         margin: 0 !important;
-        padding: 0 !important;
-        display: flex !important;
-        align-items: center !important;
-        gap: 10px !important;
     }
 
-    /* ========================================================
-        TÍTULOS PRINCIPALES CON IA GLOW Y GRADIENTE DINÁMICO
-        ======================================================== */
+    /* --------------------------------------------------------
+       TÍTULOS PRINCIPALES CON GRADIENTE ANIMADO E IA GLOW
+       -------------------------------------------------------- */
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
     .custom-data-title {
-        background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%) !important;
-        border: 1px solid #334155 !important;
+        background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%) !important;
+        background-size: 200% 200% !important;
+        border: 1px solid #475569 !important;
         border-left: 6px solid #38BDF8 !important;
         padding: 24px 30px !important;
         border-radius: 14px !important;
@@ -136,12 +130,12 @@ st.markdown("""
         pointer-events: none !important;
     }
 
-    /* Capa de gradiente interactivo animado al pasar el cursor */
+    /* Capa de brillo y gradiente dinámico interactivo (IA Glow) */
     .custom-data-title::after {
         content: "" !important;
         position: absolute !important;
         top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important;
-        background: linear-gradient(120deg, rgba(37, 99, 235, 0.45), rgba(56, 189, 248, 0.35), rgba(124, 58, 237, 0.4)) !important;
+        background: linear-gradient(120deg, rgba(37, 99, 235, 0.4), rgba(56, 189, 248, 0.3), rgba(147, 51, 234, 0.3)) !important;
         background-size: 200% 200% !important;
         opacity: 0 !important;
         transition: opacity 0.4s ease-in-out !important;
@@ -149,18 +143,18 @@ st.markdown("""
         z-index: 1 !important;
     }
 
-    /* Asegurar que el contenido interno esté sobre las capas de diseño */
     .custom-data-title > * {
         position: relative !important;
         z-index: 2 !important;
     }
 
-    /* Efecto interactivo al pasar el cursor (Hover) con animación fluida de gradiente */
+    /* Efecto interactivo al pasar el cursor (Hover) con Gradiente en Movimiento */
     .custom-data-title:hover {
         transform: translateY(-4px) !important;
         border-color: #38BDF8 !important;
         border-left-color: #60A5FA !important;
-        box-shadow: 0 0 40px rgba(56, 189, 248, 0.5), inset 0 0 20px rgba(56, 189, 248, 0.3) !important;
+        box-shadow: 0 0 40px rgba(56, 189, 248, 0.5), inset 0 0 20px rgba(56, 189, 248, 0.2) !important;
+        animation: gradientShift 4s ease infinite !important;
     }
 
     .custom-data-title:hover::after {
@@ -193,9 +187,10 @@ st.markdown("""
     .custom-data-title:hover p {
         color: #E2E8F0 !important;
     }
-    /* ======================================================== */
 
-    /* Efectos hover e iluminación en botones */
+    /* --------------------------------------------------------
+       ESTILOS PARA BOTONES, INPUTS Y MÉTRICAS
+       -------------------------------------------------------- */
     .stButton > button {
         background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
         color: white;
@@ -213,11 +208,10 @@ st.markdown("""
         transform: translateY(-2px);
     }
 
-    /* Inputs y Selectores modernos */
     .stTextInput input, .stSelectbox select, .stNumberInput input {
-        background-color: #1E293B !important;
+        background-color: #0F172A !important;
         color: #F8FAFC !important;
-        border: 1px solid #334155 !important;
+        border: 1px solid #475569 !important;
         border-radius: 8px !important;
     }
     
@@ -226,12 +220,11 @@ st.markdown("""
         box-shadow: 0 0 10px rgba(56, 189, 248, 0.3) !important;
     }
 
-    /* Métricas con estilo corporativo luminoso */
     [data-testid="stMetric"] {
-        background-color: #1E293B;
+        background-color: #0F172A;
         padding: 15px;
         border-radius: 12px;
-        border: 1px solid #334155;
+        border: 1px solid #475569;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
     }
     [data-testid="stMetricLabel"] {
@@ -241,11 +234,10 @@ st.markdown("""
         color: #38BDF8 !important;
     }
 
-    /* Tablas y dataframes */
     [data-testid="stDataFrame"] {
         border-radius: 10px;
         overflow: hidden;
-        border: 1px solid #334155;
+        border: 1px solid #475569;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -259,7 +251,6 @@ st.sidebar.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-st.sidebar.markdown("---")
 modulos = st.sidebar.selectbox(
     "Seleccione la sección a consultar",
     ["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"]
