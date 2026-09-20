@@ -35,7 +35,9 @@ st.markdown("""
         color: #38BDF8;
     }
 
-    /* ESTILO OPCIÓN 3: TÍTULO INTERACTIVO CON IA GLOW Y GRADIENTE DINÁMICO */
+    /* ========================================================
+       OPCIÓN 3: TÍTULO INTERACTIVO CON IA GLOW Y GRADIENTE DINÁMICO
+       ======================================================== */
     .custom-data-title {
         background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
         border: 1px solid #334155;
@@ -115,6 +117,7 @@ st.markdown("""
     .custom-data-title:hover p {
         color: #E2E8F0 !important;
     }
+    /* ======================================================== */
 
     /* Efectos hover e iluminación en botones */
     .stButton > button {
@@ -514,7 +517,6 @@ elif modulos == "Ejercicio 4":
                 st.rerun()
     else:
         st.info("No hay pacientes registrados en la base de datos temporal.")
-
 
 
 
