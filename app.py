@@ -8,7 +8,7 @@ import librería_clases_proyecto1 as lc
 # ==========================================
 
 st.set_page_config(
-    page_title="Gestión y Análisis de Datos - Python Fundamentals",
+    page_title="Proyecto Aplicado en Streamlit – Fundamentos de Programación",
     page_icon="⚡",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -346,10 +346,9 @@ if modulos == "Home":
 
     st.markdown("""
         <div class="custom-data-title">
-            <h1>Aplicación de Python para la Gestión y Análisis de Datos</h1>
+            <h1>Proyecto Aplicado en Streamlit – Fundamentos de Programación </h1>
         </div>
     """, unsafe_allow_html=True)
-
 
     col_info1, col_info2, col_info3 = st.columns(3)
 
