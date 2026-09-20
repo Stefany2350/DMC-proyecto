@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Inyección de Estilos CSS Avanzados (Paleta Slate Soft + Gradientes Interactivos IA Glow)
+# Inyección de Estilos CSS Avanzados
 st.markdown("""
     <style>
     /* --------------------------------------------------------
@@ -38,7 +38,7 @@ st.markdown("""
     }
 
     /* --------------------------------------------------------
-       TÍTULO DEL SIDEBAR CON GRADIENTE ANIMADO E IA GLOW
+       TÍTULO DEL SIDEBAR
        -------------------------------------------------------- */
     .sidebar-custom-title {
         background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%) !important;
@@ -97,95 +97,48 @@ st.markdown("""
     }
 
     /* --------------------------------------------------------
-       TÍTULOS PRINCIPALES CON GRADIENTE ANIMADO E IA GLOW
+       TÍTULOS PRINCIPALES CON DISEÑO FIJO (SIN HOVER EFFECT)
        -------------------------------------------------------- */
-    @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+    .contenedor-titulo-fijo {
+        background-color: #111a2c !important; /* Fondo azul oscuro */
+        background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px) !important;
+        background-size: 15px 15px !important; /* Efecto de cuadrícula de puntos */
+        border: 1.5px solid #3b82f6 !important; /* Borde azul claro/celeste */
+        border-radius: 12px !important;
+        padding: 25px 30px !important;
+        box-shadow: 0px 0px 20px 2px rgba(59, 130, 246, 0.4) !important; /* Resplandor (glow) externo */
+        margin-bottom: 25px !important;
+        
+        /* Prevenir transiciones o cambios de cursor */
+        transition: none !important; 
+        cursor: default !important;
     }
 
-    .custom-data-title {
-        background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%) !important;
-        background-size: 200% 200% !important;
-        border: 1px solid #475569 !important;
-        border-left: 6px solid #38BDF8 !important;
-        padding: 24px 30px !important;
-        border-radius: 14px !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
-        position: relative !important;
-        overflow: hidden !important;
-        margin-bottom: 30px !important;
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    .contenedor-titulo-fijo:hover {
+        background-color: #111a2c !important;
+        border: 1.5px solid #3b82f6 !important;
+        box-shadow: 0px 0px 20px 2px rgba(59, 130, 246, 0.4) !important;
+        transform: none !important;
     }
 
-    /* Patrón de puntos de datos tecnológicos de fondo */
-    .custom-data-title::before {
-        content: "" !important;
-        position: absolute !important;
-        top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important;
-        background-image: radial-gradient(circle, rgba(56, 189, 248, 0.18) 1.5px, transparent 1.5px) !important;
-        background-size: 18px 18px !important;
-        opacity: 0.7 !important;
-        pointer-events: none !important;
-    }
-
-    /* Capa de brillo y gradiente dinámico interactivo (IA Glow) */
-    .custom-data-title::after {
-        content: "" !important;
-        position: absolute !important;
-        top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important;
-        background: linear-gradient(120deg, rgba(37, 99, 235, 0.4), rgba(56, 189, 248, 0.3), rgba(147, 51, 234, 0.3)) !important;
-        background-size: 200% 200% !important;
-        opacity: 0 !important;
-        transition: opacity 0.4s ease-in-out !important;
-        pointer-events: none !important;
-        z-index: 1 !important;
-    }
-
-    .custom-data-title > * {
-        position: relative !important;
-        z-index: 2 !important;
-    }
-
-    /* Efecto interactivo al pasar el cursor (Hover) con Gradiente en Movimiento */
-    .custom-data-title:hover {
-        transform: translateY(-4px) !important;
-        border-color: #38BDF8 !important;
-        border-left-color: #60A5FA !important;
-        box-shadow: 0 0 40px rgba(56, 189, 248, 0.5), inset 0 0 20px rgba(56, 189, 248, 0.2) !important;
-        animation: gradientShift 4s ease infinite !important;
-    }
-
-    .custom-data-title:hover::after {
-        opacity: 1 !important;
-        animation: gradientShift 4s ease infinite !important;
-    }
-
-    .custom-data-title h1 {
-        color: #F8FAFC !important;
-        font-size: 2.1rem !important;
+    .titulo-principal {
+        color: white !important;
+        font-size: 32px !important;
         font-weight: 700 !important;
         margin: 0 !important;
-        padding: 0 !important;
-        background: none !important;
-        box-shadow: none !important;
-        border: none !important;
+        padding-bottom: 8px !important;
         display: flex !important;
         align-items: center !important;
         gap: 12px !important;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
     }
 
-    .custom-data-title p {
-        color: #94A3B8 !important;
-        font-size: 0.95rem !important;
-        margin: 6px 0 0 0 !important;
+    .subtitulo {
+        color: #cbd5e1 !important; /* Gris claro/pizarra */
+        font-size: 16px !important;
+        margin: 0 !important;
         font-weight: 400 !important;
-        transition: color 0.3s ease !important;
-    }
-
-    .custom-data-title:hover p {
-        color: #E2E8F0 !important;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
     }
 
     /* --------------------------------------------------------
@@ -264,9 +217,9 @@ if modulos == "Home":
     st.sidebar.image("image_home.png", use_container_width=True)
     
     st.markdown("""
-        <div class="custom-data-title">
-            <h1>🚀 Aplicación de Python para la Gestión y Análisis de Datos</h1>
-            <p>Módulo: Python Fundamentals | Panel de Control General</p>
+        <div class="contenedor-titulo-fijo">
+            <h1 class="titulo-principal">🚀 Aplicación de Python para la Gestión y Análisis de Datos</h1>
+            <p class="subtitulo">Módulo: Python Fundamentals | Panel de Control General</p>
         </div>
     """, unsafe_allow_html=True)
     
@@ -301,9 +254,9 @@ elif modulos == "Ejercicio 1":
     st.sidebar.image("image_ejercicio1.jpg", use_container_width=True)
     
     st.markdown("""
-        <div class="custom-data-title">
-            <h1>💰 Flujo de caja con listas</h1>
-            <p>Módulo Financiero - Análisis de Ingresos y Gastos</p>
+        <div class="contenedor-titulo-fijo">
+            <h1 class="titulo-principal">💰 Flujo de caja con listas</h1>
+            <p class="subtitulo">Módulo Financiero - Análisis de Ingresos y Gastos</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -384,9 +337,9 @@ elif modulos == "Ejercicio 2":
     st.sidebar.image("image_ejercicio2.jpg", use_container_width=True)
     
     st.markdown("""
-        <div class="custom-data-title">
-            <h1>📦 Formulario de registro de productos</h1>
-            <p>Módulo de Inventario - Procesamiento con Arreglos NumPy</p>
+        <div class="contenedor-titulo-fijo">
+            <h1 class="titulo-principal">📦 Formulario de registro de productos</h1>
+            <p class="subtitulo">Módulo de Inventario - Procesamiento con Arreglos NumPy</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -460,9 +413,9 @@ elif modulos == "Ejercicio 3":
     st.sidebar.image("image_ejercicio3.jpg", use_container_width=True)
     
     st.markdown("""
-        <div class="custom-data-title">
-            <h1>📊 Cálculo de tasa de error de transacciones</h1>
-            <p>Módulo de Control de Calidad - Métricas y Análisis de Datos</p>
+        <div class="contenedor-titulo-fijo">
+            <h1 class="titulo-principal">📊 Cálculo de tasa de error de transacciones</h1>
+            <p class="subtitulo">Módulo de Control de Calidad - Métricas y Análisis de Datos</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -526,9 +479,9 @@ elif modulos == "Ejercicio 4":
     st.sidebar.image("image_ejercicio4.jpg", use_container_width=True)
     
     st.markdown("""
-        <div class="custom-data-title">
-            <h1>🏥 Gestión de pacientes (CRUD)</h1>
-            <p>Módulo de Programación Orientada a Objetos - Control Clínico</p>
+        <div class="contenedor-titulo-fijo">
+            <h1 class="titulo-principal">🏥 Gestión de pacientes (CRUD)</h1>
+            <p class="subtitulo">Módulo de Programación Orientada a Objetos - Control Clínico</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -589,7 +542,6 @@ elif modulos == "Ejercicio 4":
                 st.rerun()
     else:
         st.info("No hay pacientes registrados en la base de datos temporal.")
-
 
 
 
