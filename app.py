@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Inyección de Estilos CSS Avanzados (Paleta Empresarial, Título Estilo Opción 3 con Hover Mejorado)
+# Inyección de Estilos CSS Avanzados (Efecto IA Glow y Gradiente Dinámico en Títulos)
 st.markdown("""
     <style>
     /* Paleta de colores empresarial y fondo general */
@@ -35,7 +35,7 @@ st.markdown("""
         color: #38BDF8;
     }
 
-    /* ESTILO OPCIÓN 3 MEJORADO: TÍTULO INTERACTIVO CON HOVER DINÁMICO */
+    /* ESTILO OPCIÓN 3: TÍTULO INTERACTIVO CON IA GLOW Y GRADIENTE DINÁMICO */
     .custom-data-title {
         background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
         border: 1px solid #334155;
@@ -49,29 +49,45 @@ st.markdown("""
         transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Sutil patrón de fondo tecnológico de datos */
+    /* Patrón de puntos de datos estático */
     .custom-data-title::before {
         content: "";
         position: absolute;
         top: 0; right: 0; bottom: 0; left: 0;
-        background-image: radial-gradient(circle, rgba(56, 189, 248, 0.1) 1px, transparent 1px);
+        background-image: radial-gradient(circle, rgba(56, 189, 248, 0.12) 1px, transparent 1px);
         background-size: 20px 20px;
-        opacity: 0.5;
+        opacity: 0.6;
         pointer-events: none;
-        transition: opacity 0.4s ease;
+    }
+
+    /* Capa adicional para el gradiente dinámico y brillo (IA Glow) al hacer hover */
+    .custom-data-title::after {
+        content: "";
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        background: linear-gradient(135deg, rgba(37, 99, 235, 0.25) 0%, rgba(56, 189, 248, 0.15) 100%);
+        opacity: 0;
+        transition: opacity 0.4s ease-in-out;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    /* ASEGURAR QUE EL TEXTO ESTÉ POR ENCIMA DE LA CAPA DE BRILLO */
+    .custom-data-title > * {
+        position: relative;
+        z-index: 2;
     }
 
     /* EFECTO INTERACTIVO AL PASAR EL CURSOR (HOVER) */
     .custom-data-title:hover {
-        background: linear-gradient(135deg, #253349 0%, #131E33 100%);
-        transform: translateY(-4px);
+        transform: translateY(-5px);
         border-color: #38BDF8;
         border-left-color: #60A5FA;
-        box-shadow: 0 0 35px rgba(56, 189, 248, 0.35);
+        box-shadow: 0 0 35px rgba(56, 189, 248, 0.4), inset 0 0 15px rgba(56, 189, 248, 0.15);
     }
 
-    .custom-data-title:hover::before {
-        opacity: 0.9; /* Ilumina más el patrón de puntos al pasar el mouse */
+    .custom-data-title:hover::after {
+        opacity: 1; /* Activa el destello del gradiente dinámico */
     }
 
     .custom-data-title h1 {
@@ -97,7 +113,7 @@ st.markdown("""
     }
 
     .custom-data-title:hover p {
-        color: #CBD5E1 !important; /* El subtítulo se aclara ligeramente al pasar el cursor */
+        color: #E2E8F0 !important;
     }
 
     /* Efectos hover e iluminación en botones */
@@ -322,7 +338,7 @@ elif modulos == "Ejercicio 2":
             st.session_state.productos = np.vstack([st.session_state.productos, nuevo_producto])
             st.success("Producto registrado correctamente")
         else:
-            st.error("Ingrese un nombre válido y un precio mayor que 0.")
+            st.error("Ingrese un nombre válido y un valor mayor que 0.")
 
     st.markdown("---")
     st.subheader("Productos registrados")
