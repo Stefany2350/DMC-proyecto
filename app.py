@@ -396,7 +396,7 @@ if modulos == "Home":
     
 
 # ==========================================
-# EJERCICIO 1 - FLUJO DE CAJA
+# EJERCICIO 1
 # ==========================================
 
 elif modulos == "Ejercicio 1":
@@ -614,7 +614,7 @@ elif modulos == "Ejercicio 1":
 
 
 # ==========================================
-# EJERCICIO 2 - REGISTRO DE PRODUCTOS
+# EJERCICIO 2
 # ==========================================
 
 elif modulos == "Ejercicio 2":
@@ -816,7 +816,7 @@ elif modulos == "Ejercicio 2":
 
 
 # ==========================================
-# EJERCICIO 3 - TASA DE ERROR
+# EJERCICIO 3
 # ==========================================
 
 elif modulos == "Ejercicio 3":
@@ -992,7 +992,7 @@ elif modulos == "Ejercicio 3":
 
 
 # ==========================================
-# EJERCICIO 4 - GESTIÓN DE PACIENTES
+# EJERCICIO 4
 # ==========================================
 
 elif modulos == "Ejercicio 4":
@@ -1003,7 +1003,6 @@ elif modulos == "Ejercicio 4":
         "image_ejercicio4.jpg",
         use_container_width=True
     )
-
 
     st.markdown("""
         <div class="custom-data-title">
